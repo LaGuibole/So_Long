@@ -1,0 +1,6 @@
+.vscode
+obj/
+libs/
+libft*
+so_long
+includes/libft.h
