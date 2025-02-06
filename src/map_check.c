@@ -6,24 +6,13 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:58:26 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 15:30:13 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:16:07 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/// @brief A function to check if the map has .ber extension
-/// @param map_file will be argv[1] so the map file
-/// @return 0 if map has ber, 1 otherwise
-int	has_ber_extension(t_map *map_assets)
-{
-	char	*str_cpy;
 
-	if (!map_assets->map_file || ft_strlen(map_assets->map_file) <= 4)
-		return (1);
-	str_cpy = map_assets->map_file + ft_strlen(map_assets->map_file) - 4;
-	return (ft_strcmp(str_cpy, ".ber"));
-}
 
 /// @brief Check if the map is rectangular or not
 /// @param map_file will be argv[1] so the map file

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 16:20:35 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:59:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	populate_map_grid(int fd, t_map *map)
 		map->height++;
 		line = get_next_line(fd);
 	}
-	return (0);
+	return (RET_OK);
 }
 
 int	read_map(t_map *map)
@@ -59,7 +59,6 @@ int	read_map(t_map *map)
 	int		fd;
 	int		line_count;
 
-	// printf("Opening file : %s\n", map->map_file);
 	fd = open(map->map_file, O_RDONLY);
 	if (fd == -1)
 		return (perror("Error opening file\n"), -1);
@@ -69,7 +68,7 @@ int	read_map(t_map *map)
 	{
 		close(fd);
 		perror("Memory allocation error\n");
-		return (-1);
+		return (RET_NEG_ERR);
 	}
 	close(fd);
 	fd = open(map->map_file, O_RDONLY);
@@ -78,5 +77,5 @@ int	read_map(t_map *map)
 	populate_map_grid(fd, map);
 	map->grid[line_count] = NULL;
 	close(fd);
-	return (0);
+	return (RET_OK);
 }

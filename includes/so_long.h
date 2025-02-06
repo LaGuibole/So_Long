@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 16:24:24 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:21:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define RET_OK	0
 # define RET_ERR 1
+# define RET_NEG_ERR -1
 # define BAD_ARG_MSD "Error : Bad Argument\n"
 # define USAGE "Usage : ./so_long <file.ber>\n"
 
@@ -67,7 +68,7 @@ int		check_middle(char *line, int len);
 int		is_map_closed(char *map_file);
 
 int		has_ber_extension(t_map *map_assets);
-int		is_map_rectangular(t_solong *map_assets);
+int		is_rectangular (t_map *map);
 int		read_map(t_map *map);
 void	free_map(t_map *map);
 void	copy_map(t_map *original, t_map *copy);
