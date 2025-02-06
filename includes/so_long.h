@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 15:18:02 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:24:24 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_solong
 
 typedef struct s_map
 {
+	char	*map_file;
 	char	**grid;
 	int		width;
 	int		height;
@@ -65,8 +66,9 @@ int		check_first_last(char *line, int len);
 int		check_middle(char *line, int len);
 int		is_map_closed(char *map_file);
 
-int		has_ber_extension(t_solong *map_assets);
+int		has_ber_extension(t_map *map_assets);
 int		is_map_rectangular(t_solong *map_assets);
-int		read_map(char *file_path, t_map *map);
+int		read_map(t_map *map);
 void	free_map(t_map *map);
+void	copy_map(t_map *original, t_map *copy);
 #endif

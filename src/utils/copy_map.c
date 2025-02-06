@@ -6,10 +6,63 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:15:29 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 15:16:09 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:34:47 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
+static void	free_grid(t_map *map)
+{
+	int	i;
 
+	if (map->grid != NULL)
+	{
+		if (map->grid != NULL)
+		{
+			i = 0;
+			while (i < map->height)
+			{
+				free(map->grid);
+				map->grid = NULL;
+			}
+		}
+	}
+}
+
+static int	copy_grid(t_map *copy, t_map *original)
+{
+	int	i;
+
+	copy->grid = malloc(sizeof(char *) * (original->height + 1));
+	if (!copy->grid)
+		return (0);
+	i = 0;
+	while (i < original->height)
+	{
+		copy->grid[i] = ft_strdup(original->grid[i]);
+		if (!copy->grid[i])
+		{
+			free_grid(copy);
+			return (0);
+		}
+		i++;
+	}
+	copy->grid[original->height] = NULL;
+	return (1);
+}
+
+void	copy_map(t_map *original, t_map *copy)
+{
+	copy->map_file = original->map_file;
+	if (!copy->map_file)
+		return ;
+	copy->width = original->width;
+	copy->height = original->height;
+	if (!copy_grid(copy, original))
+	{
+		free(copy->map_file);
+		free_map(copy);
+		return ;
+	}
+}
