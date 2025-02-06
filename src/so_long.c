@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:06:51 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 18:04:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:16:11 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 		else
 			ft_printf("Map copy failed (size mismatch)\n");
 	}
-	if (is_rectangular(&map_cpy))
+	if (is_rectangular(&map_cpy) == RET_ERR)
 	{
 		ft_printf("Error: Map is not a rectangle\n");
 		free_map(&map);
@@ -67,6 +67,10 @@ int	main(int argc, char **argv)
 	{
 		ft_printf("Map is rectangular\n");
 	}
+	if (is_bordered_with_ones(&map_cpy) == RET_OK)
+		ft_printf("Map is closed with 1\n");
+	else
+		ft_printf("Map is not closed\n");
 	free_map(&map);
 	free_map(&map_cpy);
 	return (RET_OK);

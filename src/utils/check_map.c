@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 17:35:50 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:29:03 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	has_ber_extension(t_map *map)
 	return (ft_strcmp(str_cpy, ".ber"));
 }
 
-int	is_rectangular (t_map *map)
+int	is_rectangular(t_map *map)
 {
 	int	i;
 
@@ -40,3 +40,4 @@ int	is_rectangular (t_map *map)
 	}
 	return (RET_OK);
 }
+
