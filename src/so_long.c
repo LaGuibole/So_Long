@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:06:51 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 18:16:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:50:21 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		printf("Usage: %s <map_file.ber>\n", argv[0]);
+		return 0;
 	}
 	map.map_file = argv[1];
 	if (read_map(&map) == -1)
@@ -67,7 +68,7 @@ int	main(int argc, char **argv)
 	{
 		ft_printf("Map is rectangular\n");
 	}
-	if (is_bordered_with_ones(&map_cpy) == RET_OK)
+	if (is_bordered_with_walls(&map_cpy) == RET_OK)
 		ft_printf("Map is closed with 1\n");
 	else
 		ft_printf("Map is not closed\n");

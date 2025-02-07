@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 18:32:30 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:46:37 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	get_map_dimensions(int fd, int *width)
 	if (line != NULL)
 	{
 		*width = ft_strlen(line);
+		if (line[*width -1] == '\n')
+			(*width)--;
 		free(line);
 		line = NULL;
 		line_count++;
@@ -40,12 +42,16 @@ static int	get_map_dimensions(int fd, int *width)
 static int	populate_map_grid(int fd, t_map *map)
 {
 	char	*line;
+	int		len;
 
 	map->height = 0;
 	line = get_next_line(fd);
-	map->width = ft_strlen(line);
+	// map->width = ft_strlen(line);
 	while (line)
 	{
+		len = ft_strlen(line);
+		if (line[len - 1] == '\n')
+			line[len - 1] = '\0';
 		map->grid[map->height] = ft_strdup(line);
 		free(line);
 		map->height++;

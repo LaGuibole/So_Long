@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 19:29:03 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:56:53 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@ int	is_rectangular(t_map *map)
 	while (i < map->height)
 	{
 		if ((int)ft_strlen(map->grid[i]) != map->width)
+			return (RET_ERR);
+		i++;
+	}
+	return (RET_OK);
+}
+
+int	is_bordered_with_walls(t_map *map)
+{
+	int	i;
+
+	if (!map || !map->grid)
+		return (RET_ERR);
+	i = 0;
+	while (i < map->width)
+	{
+		if (map->grid[0][i] != '1' || map->grid[map->height - 1][i] != '1')
+			return (RET_ERR);
+		i++;
+	}
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->grid[i][0] != '1' || map->grid[i][map->width - 1] != '1')
 			return (RET_ERR);
 		i++;
 	}

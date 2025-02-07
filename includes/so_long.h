@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 18:15:06 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:39:56 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ int		is_rectangular (t_map *map);
 int		read_map(t_map *map);
 void	free_map(t_map *map);
 void	copy_map(t_map *original, t_map *copy);
-int		is_bordered_with_ones(t_map *map);
+int		is_bordered_with_walls(t_map *map);
 #endif
