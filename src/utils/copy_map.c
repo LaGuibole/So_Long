@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:15:29 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/06 17:43:55 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:25:20 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // 	}
 // }
 
-static int	copy_grid(t_map *copy, t_map *original)
+static int	copy_grid(t_game *copy, t_game *original)
 {
 	int	i;
 
@@ -57,13 +57,15 @@ static int	copy_grid(t_map *copy, t_map *original)
 	return (RET_OK);
 }
 
-void	copy_map(t_map *original, t_map *copy)
+void	copy_map(t_game *original, t_game *copy)
 {
 	copy->map_file = original->map_file;
 	if (!copy->map_file)
 		return ;
 	copy->width = original->width;
 	copy->height = original->height;
+	copy->player_x = original->player_x;
+	copy->player_y = original->player_y;
 	if (copy_grid(copy, original))
 	{
 		free(copy->map_file);

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/07 17:56:53 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:20:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /// @brief A function to check if the map has .ber extension
 /// @param map_file will be argv[1] so the map file
 /// @return 0 if map has ber, 1 otherwise
-int	has_ber_extension(t_map *map)
+int	has_ber_extension(t_game *map)
 {
 	char	*str_cpy;
 
@@ -25,7 +25,7 @@ int	has_ber_extension(t_map *map)
 	return (ft_strcmp(str_cpy, ".ber"));
 }
 
-int	is_rectangular(t_map *map)
+int	is_rectangular(t_game *map)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ int	is_rectangular(t_map *map)
 	return (RET_OK);
 }
 
-int	is_bordered_with_walls(t_map *map)
+int	is_bordered_with_walls(t_game *map)
 {
 	int	i;
 
@@ -64,3 +64,31 @@ int	is_bordered_with_walls(t_map *map)
 	return (RET_OK);
 }
 
+int	has_required_elements(t_game *map)
+{
+	int	i;
+	int	j;
+
+	if (!map || !map->grid)
+		return (RET_ERR);
+	map->player_count = 0;
+	map->collectible_count = 0;
+	map->exit_count = 0;
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			if (map->grid[i][j] == 'P')
+				map->player_count++;
+			else if (map->grid[i][j] == 'C')
+				map->collectible_count++;
+			else if (map->grid[i][j] == 'E')
+				map->exit_count++;
+		}
+	}
+	if (map->player_count != 1 || map->collectible_count < 1 || map->exit_count < 1)
+		return (RET_ERR);
+	return (RET_OK);
+}

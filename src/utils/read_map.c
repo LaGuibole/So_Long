@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/07 17:46:37 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:35:48 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	get_map_dimensions(int fd, int *width)
 	return (line_count);
 }
 
-static int	populate_map_grid(int fd, t_map *map)
+static int	populate_map_grid(int fd, t_game *map)
 {
 	char	*line;
 	int		len;
@@ -60,7 +60,7 @@ static int	populate_map_grid(int fd, t_map *map)
 	return (RET_OK);
 }
 
-int	read_map(t_map *map)
+int	read_map(t_game *map)
 {
 	int		fd;
 	int		line_count;

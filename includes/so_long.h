@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/07 17:39:56 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:17:58 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,18 @@ typedef struct s_solong
 
 }	t_solong;
 
-typedef struct s_map
+typedef struct s_game
 {
 	char	*map_file;
 	char	**grid;
 	int		width;
 	int		height;
-} t_map;
+	int		player_count;
+	int		collectible_count;
+	int		exit_count;
+	int		player_x;
+	int		player_y;
+} t_game;
 
 
 
@@ -61,16 +66,19 @@ typedef struct s_map
 void	usage(void);
 
 // MAPS
-// int		has_ber_extension(char *str);
-// int		is_map_rectangular(char *map_file);
+
 int		check_first_last(char *line, int len);
 int		check_middle(char *line, int len);
 int		is_map_closed(char *map_file);
 
-int		has_ber_extension(t_map *map_assets);
-int		is_rectangular (t_map *map);
-int		read_map(t_map *map);
-void	free_map(t_map *map);
-void	copy_map(t_map *original, t_map *copy);
-int		is_bordered_with_walls(t_map *map);
+int		has_ber_extension(t_game *map_assets);
+int		is_rectangular (t_game *map);
+int		read_map(t_game *map);
+void	free_map(t_game *map);
+void	copy_map(t_game *original, t_game *copy);
+int		is_bordered_with_walls(t_game *map);
+int		has_required_elements(t_game *map);
+int		is_path_valid(t_game *original);
+void	find_player(t_game *map);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:06:51 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/07 17:50:21 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:18:13 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	main(int argc, char **argv)
 {
 	// t_solong solong;
-	t_map	map;
-	t_map	map_cpy;
+	t_game	map;
+	t_game	map_cpy;
 
 	if (argc != 2)
 	{
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	map.map_file = argv[1];
 	if (read_map(&map) == -1)
 	{
-		free_map(&map);
+		// free_map(&map); Pas besoin de free la map si extension non valide
 		ft_printf("Map cannot be read\n");
 		return (RET_ERR);
 	}
@@ -72,6 +72,15 @@ int	main(int argc, char **argv)
 		ft_printf("Map is closed with 1\n");
 	else
 		ft_printf("Map is not closed\n");
+	if (has_required_elements(&map_cpy) == RET_ERR)
+		ft_printf("Error : Invalid map elements\n");
+	else
+		ft_printf("Map has all elements\n");
+	find_player(&map);
+	if (is_path_valid(&map) == RET_ERR)
+		ft_printf("Map is not playable\n");
+	else
+		ft_printf("Map is playable, all good !\n");
 	free_map(&map);
 	free_map(&map_cpy);
 	return (RET_OK);
