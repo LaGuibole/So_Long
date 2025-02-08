@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 18:36:09 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:22:29 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		read_map(t_game *map);
 void	free_map(t_game *map);
 void	copy_map(t_game *original, t_game *copy);
 int		is_bordered_with_walls(t_game *map);
+int		has_valid_elements(t_game *map);
 int		has_required_elements(t_game *map);
 int		is_path_valid(t_game *original);
 void	find_player(t_game *map);

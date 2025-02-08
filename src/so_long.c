@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 16:06:51 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 17:18:13 by guphilip         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// /* ************************************************************************** */
+// /*                                                                            */
+// /*                                                        :::      ::::::::   */
+// /*   so_long.c                                          :+:      :+:    :+:   */
+// /*                                                    +:+ +:+         +:+     */
+// /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
+// /*                                                +#+#+#+#+#+   +#+           */
+// /*   Created: 2025/02/04 16:06:51 by guphilip          #+#    #+#             */
+// /*   Updated: 2025/02/08 18:51:47 by guphilip         ###   ########.fr       */
+// /*                                                                            */
+// /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
@@ -72,6 +72,10 @@ int	main(int argc, char **argv)
 		ft_printf("Map is closed with 1\n");
 	else
 		ft_printf("Map is not closed\n");
+	if (has_valid_elements(&map_cpy) == RET_ERR)
+		ft_printf("Error : Invalid char in map\n");
+	else
+		ft_printf("No invalid char in map\n");
 	if (has_required_elements(&map_cpy) == RET_ERR)
 		ft_printf("Error : Invalid map elements\n");
 	else

@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/04 13:50:50 by guphilip          #+#    #+#              #
-#    Updated: 2025/02/08 18:43:16 by guphilip         ###   ########.fr        #
+#    Updated: 2025/02/08 19:13:15 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ RM_LINE 			= 		@tput cuu1 && tput el
 # FLAGS && COMPIL
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Wextra -Werror -g
+LIBFLAGS = -L/usr/lib -lX11 -lXext -lXrandr -lXi -lXinerama -lXcursor -lm
 IFLAGS = -I$(INC_DIR)
 
 # DIRECTORIES
@@ -39,7 +40,7 @@ OBJ_DIR				= 		obj
 
 # SO_LONG
 
-SRC_FILES 			=		so_long map_check errors_so_long utils/free_map utils/read_map utils/copy_map utils/check_map utils/flood_fill
+SRC_FILES 			=		so_long map_check errors_so_long test utils/free_map utils/read_map utils/copy_map utils/check_map utils/flood_fill
 SRCS				=		$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJS				=		$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
@@ -53,6 +54,7 @@ MLX_H_PATH			=		$(MLX_PATH)/$(MLX_H)
 MLX_TARGET			=		libmlx.a
 MLX_GIT				=		https://github.com/42Paris/minilibx-linux.git
 MLX_TARGET_PATH		=		$(MLX_PATH)/$(MLX_TARGET)
+
 #TARGET
 
 NAME				=		so_long
@@ -132,7 +134,7 @@ $(MLX_TARGET):
 # SO_LONG TARGET
 
 $(NAME): $(LIBFT_INC_H) $(MLX_INC_H) $(OBJS)
-							@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET)
+							@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) $(MLX_TARGET) $(LIBFLAGS)
 							@echo "🎉 Executable$(BLUE) $(NAME) cree. $(RESET)\n"
 
 # OBJ DIR
@@ -146,6 +148,6 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 							@echo "⚙️ Compiling $< into $@ ...\n"
 							@${RM_LINE}
 							@mkdir -p $(dir $@)
-							@$(CC) $(CFLAGS) -c $< -o $@ -I$(IFLAGS)
+							@$(CC) -I$(IFLAGS) $(CFLAGS) -c $< -o $@
 							@${RM_LINE}
 
