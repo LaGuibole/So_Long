@@ -2,6 +2,8 @@
 obj/
 libs/
 libft*
+libmlx.a
 so_long
 includes/libft.h
+includes/mlx.h
 *.o

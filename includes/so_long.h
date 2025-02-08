@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 17:17:58 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:36:09 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 // INCLUDES
 
 # include "libft.h"
-# include "fcntl.h"
+# include "mlx.h"
+# include <fcntl.h>
 
 // DEFINES
 

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 16:20:59 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:50:39 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	has_required_elements(t_game *map)
 				map->exit_count++;
 		}
 	}
-	if (map->player_count != 1 || map->collectible_count < 1 || map->exit_count < 1)
+	if (map->player_count != 1 || map->collectible_count < 1 || map->exit_count != 1)
 		return (RET_ERR);
 	return (RET_OK);
 }

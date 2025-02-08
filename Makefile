@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/04 13:50:50 by guphilip          #+#    #+#              #
-#    Updated: 2025/02/08 17:02:37 by guphilip         ###   ########.fr        #
+#    Updated: 2025/02/08 18:43:16 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,20 @@ SRC_FILES 			=		so_long map_check errors_so_long utils/free_map utils/read_map u
 SRCS				=		$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJS				=		$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
+# MINILIBX
+
+MLX_DIR				=		minilibx-linux
+MLX_PATH			=		$(LIB_DIR)/$(MLX_DIR)
+MLX_H				=		mlx.h
+MLX_INC_H			=		$(INC_DIR)/$(MLX_H)
+MLX_H_PATH			=		$(MLX_PATH)/$(MLX_H)
+MLX_TARGET			=		libmlx.a
+MLX_GIT				=		https://github.com/42Paris/minilibx-linux.git
+MLX_TARGET_PATH		=		$(MLX_PATH)/$(MLX_TARGET)
 #TARGET
 
 NAME				=		so_long
+LIB_TARGET			=		$(LIBFT_TARGET) $(MLX_TARGET)
 
 # LIBFT COMPILATION
 
@@ -58,6 +69,37 @@ LIBFT_INC_H			= 		$(INC_DIR)/$(LIBFT_H)
 LIBFT_TARGET		= 		libft.a
 LIBFT_TARGET_PATH	= 		$(LIBFT_PATH)/$(LIBFT_TARGET)
 
+all:						$(NAME)
+
+clean:
+							@$(RM) -r $(OBJ_DIR)
+
+fclean: clean
+							@$(RM) $(NAME)
+							@$(RM) $(LIBFT_TARGET)
+							@$(RM) $(LIBFT_INC_H)
+							@$(RM) $(MLX_TARGET)
+							@$(RM) $(MLX_INC_H)
+
+re: fclean all
+
+cleanlibs:
+							@$(MAKE) clean --no-print-directory -C $(LIBFT_PATH)
+							@$(MAKE) clean --no-print-directory -C $(MLX_PATH)
+
+fcleanlibs: fclean
+							@$(RM) -r $(LIBFT_PATH)
+							@$(RM) -r $(MLX_PATH)
+
+relibs: fcleanlibs $(LIBFT_INC_H) $(MLX_INC_H)
+
+norminette:
+							@norminette $(SRC_DIR) $(BONUS_SRC) $(INC_DIR) | grep -Ev '^Notice|OK!$$'	\
+							&& $(ECHO) -e '\033[1;31mNorminette KO!'						\
+							|| $(ECHO) -e '\033[1;32mNorminette OK!'
+
+.PHONY: all re clean fclean cleanlibs fcleanlibs relibs norminette
+
 $(LIBFT_INC_H): $(LIBFT_TARGET)
 							@cp $(LIBFT_H_PATH) $@
 
@@ -66,14 +108,30 @@ $(LIBFT_TARGET):
 								printf "Cloning lib \"%s\" into \"%s\"..." $(LIBFT_GIT) $(LIBFT_PATH);\
 								git clone $(LIBFT_GIT) $(LIBFT_PATH);\
 							fi
-							@printf "Making \"%s\"..." $@
+							@printf "\nMaking \"%s\"..." $@
 							@$(MAKE) --no-print-directory -C $(LIBFT_PATH)
 							@cp $(LIBFT_TARGET_PATH) ./
+							@printf "\n✅ Done copying archive $(GREEN) \"%s\" $(RESET)... \n\n" $@
+
+# MINILIBX COMPILATION
+
+$(MLX_INC_H): $(MLX_TARGET)
+							@cp $(MLX_H_PATH) $@
+
+$(MLX_TARGET):
+							@if [ ! -d "$(MLX_PATH)/.git" ]; then \
+								printf "Cloning lib \"%s\" into \"%s\"..." $(MLX_GIT) $(MLX_PATH);\
+								git clone $(MLX_GIT) $(MLX_PATH);\
+							fi
+							@printf "Making \"%s\"..." $@
+							@$(MAKE) --no-print-directory -C $(MLX_PATH) > /dev/null 2>&1
+							@printf "\n\n"
+							@cp $(MLX_TARGET_PATH) ./
 							@printf "✅ Done copying archive $(GREEN) \"%s\" $(RESET)... \n\n" $@
 
 # SO_LONG TARGET
 
-$(NAME): $(LIBFT_INC_H) $(OBJS)
+$(NAME): $(LIBFT_INC_H) $(MLX_INC_H) $(OBJS)
 							@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET)
 							@echo "🎉 Executable$(BLUE) $(NAME) cree. $(RESET)\n"
 
@@ -90,31 +148,4 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 							@mkdir -p $(dir $@)
 							@$(CC) $(CFLAGS) -c $< -o $@ -I$(IFLAGS)
 							@${RM_LINE}
-
-all:						$(NAME)
-
-clean:
-							@$(RM) -r $(OBJ_DIR)
-
-fclean: clean
-							@$(RM) $(NAME)
-							@$(RM) $(LIBFT_TARGET)
-							@$(RM) $(LIBFT_INC_H)
-
-re: fclean all
-
-cleanlibs:
-							@$(MAKE) clean --no-print-directory -C $(LIBFT_PATH)
-
-fcleanlibs:
-							@$(RM) -r $(LIBFT_PATH)
-
-relibs: fcleanlibs $(LIBFT_INC_H)
-
-norminette:
-							@norminette $(SRC_DIR) $(BONUS_SRC) $(INC_DIR) | grep -Ev '^Notice|OK!$$'	\
-							&& $(ECHO) -e '\033[1;31mNorminette KO!'						\
-							|| $(ECHO) -e '\033[1;32mNorminette OK!'
-
-.PHONY: all re clean fclean cleanlibs fcleanlibs relibs norminette
 
