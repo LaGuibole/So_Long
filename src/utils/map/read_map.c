@@ -6,11 +6,12 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 15:35:48 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:43:34 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../../includes/so_long.h"
+#include "../../../includes/messages.h"
 
 static int	get_map_dimensions(int fd, int *width)
 {
@@ -46,7 +47,6 @@ static int	populate_map_grid(int fd, t_game *map)
 
 	map->height = 0;
 	line = get_next_line(fd);
-	// map->width = ft_strlen(line);
 	while (line)
 	{
 		len = ft_strlen(line);
@@ -65,6 +65,8 @@ int	read_map(t_game *map)
 	int		fd;
 	int		line_count;
 
+	if (has_ber_extension(map))
+		return (ft_putendl_fd(MSG_ERROR_EXTENSION, 2), RET_ERR);
 	fd = open(map->map_file, O_RDONLY);
 	if (fd == -1)
 		return (perror("Error opening file\n"), -1);
@@ -84,4 +86,26 @@ int	read_map(t_game *map)
 	map->grid[line_count] = NULL;
 	close(fd);
 	return (RET_OK);
+}
+
+int	map_check(t_game *map)
+{
+	t_game copy;
+
+	copy = (t_game){};
+	copy_map(map, &copy);
+	if (!copy.grid)
+		return (ft_putendl_fd(MSG_ERROR_COPY, 2), RET_ERR);
+	if (is_rectangular(map) == RET_ERR)
+		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_RECTANGLE, 2), RET_ERR);
+	if (is_bordered_with_walls(map) == RET_ERR)
+		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_WALLS, 2), RET_ERR);
+	if (has_valid_elements(map) == RET_ERR)
+		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_INVALID, 2), RET_ERR);
+	if (has_required_elements(map) == RET_ERR)
+		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_MISSING, 2), RET_ERR);
+	if (is_path_valid(map) == RET_ERR)
+		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_UNSOLVABLE, 2), RET_ERR);
+	free_map(&copy);
+	return (ft_putendl_fd(MSG_MAP_SUCCESS, 1), RET_OK);
 }

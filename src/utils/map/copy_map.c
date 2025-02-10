@@ -6,11 +6,12 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:15:29 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 17:25:20 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:57:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../../includes/so_long.h"
+#include "../../../includes/messages.h"
 
 // static void	free_grid(t_map *map)
 // {
@@ -49,7 +50,7 @@ static int	copy_grid(t_game *copy, t_game *original)
 				i--;
 			}
 			free(copy->grid);
-			return(RET_ERR);
+			return (RET_ERR);
 		}
 		i++;
 	}
@@ -64,12 +65,13 @@ void	copy_map(t_game *original, t_game *copy)
 		return ;
 	copy->width = original->width;
 	copy->height = original->height;
-	copy->player_x = original->player_x;
-	copy->player_y = original->player_y;
+	// copy->player_x = original->player_x;
+	// copy->player_y = original->player_y;
 	if (copy_grid(copy, original))
 	{
 		free(copy->map_file);
 		free_map(copy);
 		return ;
 	}
+	// find_player(copy);
 }

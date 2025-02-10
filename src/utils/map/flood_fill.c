@@ -6,11 +6,12 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:40:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 17:19:49 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:58:49 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../../includes/so_long.h"
+#include "../../../includes/messages.h"
 
 void	find_player(t_game *map)
 {
@@ -42,14 +43,13 @@ static void	flood_fill(t_game *map, int x, int y)
 	if (map->grid[x][y] == '1' || map->grid[x][y] == 'V')
 		return ;
 	map->grid[x][y] = 'V';
-
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x, y + 1);
 	flood_fill(map, x, y - 1);
 }
 
-static int is_map_solvable(t_game *map)
+static int	is_map_solvable(t_game *map)
 {
 	int	i;
 	int	j;
@@ -71,10 +71,11 @@ static int is_map_solvable(t_game *map)
 
 int	is_path_valid(t_game *original)
 {
-	t_game copy;
+	t_game	copy;
 
 	copy = (t_game){};
 	copy_map(original, &copy);
+	find_player(&copy);
 	flood_fill(&copy, copy.player_x, copy.player_y);
 	if (is_map_solvable(&copy) == RET_ERR)
 	{

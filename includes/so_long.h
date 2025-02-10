@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 20:22:29 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:11:31 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define RET_ERR 1
 # define RET_NEG_ERR -1
 # define BAD_ARG_MSD "Error : Bad Argument\n"
-# define USAGE "Usage : ./so_long <file.ber>\n"
+
 
 // MAPS DEFINE
 
@@ -53,7 +53,7 @@ typedef struct s_game
 	int		width;
 	int		height;
 	int		player_count;
-	int		collectible_count;
+	int		col_count;
 	int		exit_count;
 	int		player_x;
 	int		player_y;
@@ -82,5 +82,6 @@ int		has_valid_elements(t_game *map);
 int		has_required_elements(t_game *map);
 int		is_path_valid(t_game *original);
 void	find_player(t_game *map);
+int		map_check(t_game *map);
 
 #endif

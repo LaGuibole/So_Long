@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/04 13:50:50 by guphilip          #+#    #+#              #
-#    Updated: 2025/02/08 19:13:15 by guphilip         ###   ########.fr        #
+#    Updated: 2025/02/10 11:52:30 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJ_DIR				= 		obj
 
 # SO_LONG
 
-SRC_FILES 			=		so_long map_check errors_so_long test utils/free_map utils/read_map utils/copy_map utils/check_map utils/flood_fill
+SRC_FILES 			=		so_long map_check errors_so_long test utils/map/free_map utils/map/read_map utils/map/copy_map utils/map/check_map utils/map/flood_fill
 SRCS				=		$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJS				=		$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
@@ -58,6 +58,7 @@ MLX_TARGET_PATH		=		$(MLX_PATH)/$(MLX_TARGET)
 #TARGET
 
 NAME				=		so_long
+NAME_FR				=		so_long
 LIB_TARGET			=		$(LIBFT_TARGET) $(MLX_TARGET)
 
 # LIBFT COMPILATION
@@ -72,6 +73,7 @@ LIBFT_TARGET		= 		libft.a
 LIBFT_TARGET_PATH	= 		$(LIBFT_PATH)/$(LIBFT_TARGET)
 
 all:						$(NAME)
+
 
 clean:
 							@$(RM) -r $(OBJ_DIR)
@@ -100,7 +102,7 @@ norminette:
 							&& $(ECHO) -e '\033[1;31mNorminette KO!'						\
 							|| $(ECHO) -e '\033[1;32mNorminette OK!'
 
-.PHONY: all re clean fclean cleanlibs fcleanlibs relibs norminette
+.PHONY: all re clean fclean cleanlibs fcleanlibs relibs norminette fr
 
 $(LIBFT_INC_H): $(LIBFT_TARGET)
 							@cp $(LIBFT_H_PATH) $@

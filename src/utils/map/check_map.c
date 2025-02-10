@@ -6,11 +6,13 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 20:18:16 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:37:04 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../../includes/so_long.h"
+#include "../../../includes/messages.h"
+
 
 /// @brief A function to check if the map has .ber extension
 /// @param map_file will be argv[1] so the map file
@@ -94,7 +96,7 @@ int	has_required_elements(t_game *map)
 	if (!map || !map->grid)
 		return (RET_ERR);
 	map->player_count = 0;
-	map->collectible_count = 0;
+	map->col_count = 0;
 	map->exit_count = 0;
 	i = -1;
 	while (++i < map->height)
@@ -105,12 +107,12 @@ int	has_required_elements(t_game *map)
 			if (map->grid[i][j] == 'P')
 				map->player_count++;
 			else if (map->grid[i][j] == 'C')
-				map->collectible_count++;
+				map->col_count++;
 			else if (map->grid[i][j] == 'E')
 				map->exit_count++;
 		}
 	}
-	if (map->player_count != 1 || map->collectible_count < 1 || map->exit_count != 1)
+	if (map->player_count != 1 || map->col_count < 1 || map->exit_count != 1)
 		return (RET_ERR);
 	return (RET_OK);
 }
