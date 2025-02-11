@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 12:29:31 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:34:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,28 @@
 # define RET_NEG_ERR -1
 # define BAD_ARG_MSD "Error : Bad Argument\n"
 # define TILE_SIZE 32
+# define PLAYER 'P'
+# define COLLECTIBLE 'C'
+# define EXIT 'E'
+# define PLAYER_ON_EXIT 'X'
+# define FREESPACE '0'
 
 // IMG DEFINE
 
 # define WALL '1'
-# define PACMAN 'P'
 
 // HOOKS DEFINE
 
 # define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define UP 65362
+# define LEFT 65361
+# define RIGHT 65363
+# define DOWN 65364
+
 // MAPS DEFINE
 
 # define MAP_IS_OK 0
@@ -46,6 +59,7 @@
 # define BLUE "\033[34m"
 # define GREEN "\033[32m"
 # define RESET "\033[0m"
+
 // STRUCTURES
 
 typedef struct s_solong
@@ -64,6 +78,7 @@ typedef struct s_game
 	int		exit_count;
 	int		player_x;
 	int		player_y;
+	int		moves;
 
 	void	*mlx;
 	void	*win;
@@ -111,5 +126,7 @@ int		close_win(t_game *game);
 
 void 	draw_map(t_game *game);
 void	init_graphics(t_game *game);
+
+void	move_player(t_game *game, int gx, int gy);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 12:10:33 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:24:57 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_null(t_game *data)
 	data->m_width = 0;
 	data->m_height = 0;
 	data->img_wall = NULL;
+	data->moves = 0;
 }
 int	main(int argc, char **argv)
 {
@@ -28,6 +29,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return 1;
+	init_null(&game);
 	game.map_file = argv[1];
 	if (read_map(&game) == RET_ERR)
 	{
