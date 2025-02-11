@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:15:29 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/10 11:57:00 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:51:07 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static int	copy_grid(t_game *copy, t_game *original)
 {
 	int	i;
 
-	copy->grid = malloc(sizeof(char *) * (original->height + 1));
+	copy->grid = malloc(sizeof(char *) * (original->m_height + 1));
 	if (!copy->grid)
 		return (RET_ERR);
 	i = 0;
-	while (i < original->height)
+	while (i < original->m_height)
 	{
 		copy->grid[i] = ft_strdup(original->grid[i]);
 		if (!copy->grid[i])
@@ -54,7 +54,7 @@ static int	copy_grid(t_game *copy, t_game *original)
 		}
 		i++;
 	}
-	copy->grid[original->height] = NULL;
+	copy->grid[original->m_height] = NULL;
 	return (RET_OK);
 }
 
@@ -63,8 +63,8 @@ void	copy_map(t_game *original, t_game *copy)
 	copy->map_file = original->map_file;
 	if (!copy->map_file)
 		return ;
-	copy->width = original->width;
-	copy->height = original->height;
+	copy->m_width = original->m_width;
+	copy->m_height = original->m_height;
 	// copy->player_x = original->player_x;
 	// copy->player_y = original->player_y;
 	if (copy_grid(copy, original))

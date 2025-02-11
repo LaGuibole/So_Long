@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/10 11:11:31 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:29:31 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,16 @@
 # define RET_ERR 1
 # define RET_NEG_ERR -1
 # define BAD_ARG_MSD "Error : Bad Argument\n"
+# define TILE_SIZE 32
 
+// IMG DEFINE
 
+# define WALL '1'
+# define PACMAN 'P'
+
+// HOOKS DEFINE
+
+# define ESC 65307
 // MAPS DEFINE
 
 # define MAP_IS_OK 0
@@ -38,7 +46,6 @@
 # define BLUE "\033[34m"
 # define GREEN "\033[32m"
 # define RESET "\033[0m"
-
 // STRUCTURES
 
 typedef struct s_solong
@@ -50,16 +57,28 @@ typedef struct s_game
 {
 	char	*map_file;
 	char	**grid;
-	int		width;
-	int		height;
+	int		m_width;
+	int		m_height;
 	int		player_count;
 	int		col_count;
 	int		exit_count;
 	int		player_x;
 	int		player_y;
+
+	void	*mlx;
+	void	*win;
+	void	*img_wall;
+	void	*img_pacman;
+	int		img_width;
+	int		img_height;
 } t_game;
 
-
+// typedef enum s_state
+// {
+// 	FOPEN,
+// 	OPEN,
+// 	CLOSE
+// }	t_state;
 
 // FUNCTIONS
 
@@ -83,5 +102,14 @@ int		has_required_elements(t_game *map);
 int		is_path_valid(t_game *original);
 void	find_player(t_game *map);
 int		map_check(t_game *map);
+
+void	clean_lines(char **map, int height);
+void	cleanup(t_game *game);
+
+int		key_hooks(int keycode, t_game *game);
+int		close_win(t_game *game);
+
+void 	draw_map(t_game *game);
+void	init_graphics(t_game *game);
 
 #endif

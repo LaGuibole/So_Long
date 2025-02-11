@@ -6,18 +6,52 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/08 19:12:52 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:10:33 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/so_long.h"
+# include "../includes/messages.h"
 
-// int main(void)
-// {
-// 	void *mlx;
-// 	void *mlx_win;
+void	init_null(t_game *data)
+{
+	data->mlx = NULL;
+	data->win = NULL;
+	data->grid = NULL;
+	data->m_width = 0;
+	data->m_height = 0;
+	data->img_wall = NULL;
+}
+int	main(int argc, char **argv)
+{
+	t_game game;
 
-// 	mlx = mlx_init();
-// 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello So_Long!");
-// 	mlx_loop(mlx);
-// }
+	if (argc != 2)
+		return 1;
+	game.map_file = argv[1];
+	if (read_map(&game) == RET_ERR)
+	{
+		ft_printf(RED MAP_UNREADABLE RESET);
+		return (RET_ERR);
+	}
+	if (map_check(&game) == RET_ERR)
+	{
+		free_map(&game);
+		return (RET_ERR);
+	}
+	game.mlx = mlx_init();
+	if (!game.mlx)
+	{
+		clean_lines(game.grid, game.m_height);
+		return(EXIT_FAILURE);
+	}
+	game.win = mlx_new_window(game.mlx, game.m_width * TILE_SIZE, game.m_height * TILE_SIZE, "solong");
+	init_graphics(&game);
+	draw_map(&game);
+	mlx_key_hook(game.win, key_hooks, &game);
+	mlx_hook(game.win, 17, 0, close_win, &game);
+	mlx_loop(game.mlx);
+	free_map(&game);
+	return (0);
+}
+

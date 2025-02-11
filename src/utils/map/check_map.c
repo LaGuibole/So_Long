@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/10 10:37:04 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:50:32 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	is_rectangular(t_game *map)
 	if (!map || !map->grid)
 		return (RET_ERR);
 	i = 0;
-	while (i < map->height)
+	while (i < map->m_height)
 	{
-		if ((int)ft_strlen(map->grid[i]) != map->width)
+		if ((int)ft_strlen(map->grid[i]) != map->m_width)
 			return (RET_ERR);
 		i++;
 	}
@@ -50,16 +50,16 @@ int	is_bordered_with_walls(t_game *map)
 	if (!map || !map->grid)
 		return (RET_ERR);
 	i = 0;
-	while (i < map->width)
+	while (i < map->m_width)
 	{
-		if (map->grid[0][i] != '1' || map->grid[map->height - 1][i] != '1')
+		if (map->grid[0][i] != '1' || map->grid[map->m_height - 1][i] != '1')
 			return (RET_ERR);
 		i++;
 	}
 	i = 0;
-	while (i < map->height)
+	while (i < map->m_height)
 	{
-		if (map->grid[i][0] != '1' || map->grid[i][map->width - 1] != '1')
+		if (map->grid[i][0] != '1' || map->grid[i][map->m_width - 1] != '1')
 			return (RET_ERR);
 		i++;
 	}
@@ -74,10 +74,10 @@ int	has_valid_elements(t_game *map)
 	if (!map || !map->grid)
 		return (RET_ERR);
 	i = -1;
-	while (++i < map->height)
+	while (++i < map->m_height)
 	{
 		j = -1;
-		while (++j < map->width)
+		while (++j < map->m_width)
 		{
 			if (map->grid[i][j] != '1' && map->grid[i][j] != '0' &&
 				map->grid[i][j] != 'E' && map->grid[i][j] != 'C' &&
@@ -99,10 +99,10 @@ int	has_required_elements(t_game *map)
 	map->col_count = 0;
 	map->exit_count = 0;
 	i = -1;
-	while (++i < map->height)
+	while (++i < map->m_height)
 	{
 		j = -1;
-		while (++j < map->width)
+		while (++j < map->m_width)
 		{
 			if (map->grid[i][j] == 'P')
 				map->player_count++;

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:40:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/10 11:58:49 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:51:36 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	find_player(t_game *map)
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < map->m_height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < map->m_width)
 		{
 			if (map->grid[i][j] == 'P')
 			{
@@ -38,7 +38,7 @@ void	find_player(t_game *map)
 
 static void	flood_fill(t_game *map, int x, int y)
 {
-	if (x < 0 || x >= map->height || y < 0 || y >= map->width)
+	if (x < 0 || x >= map->m_height || y < 0 || y >= map->m_width)
 		return ;
 	if (map->grid[x][y] == '1' || map->grid[x][y] == 'V')
 		return ;
@@ -55,10 +55,10 @@ static int	is_map_solvable(t_game *map)
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < map->m_height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < map->m_width)
 		{
 			if (map->grid[i][j] == 'C' || map->grid[i][j] == 'E')
 				return (RET_ERR);

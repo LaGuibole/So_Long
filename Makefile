@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/04 13:50:50 by guphilip          #+#    #+#              #
-#    Updated: 2025/02/10 11:52:30 by guphilip         ###   ########.fr        #
+#    Updated: 2025/02/11 12:03:54 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ RM_LINE 			= 		@tput cuu1 && tput el
 # FLAGS && COMPIL
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Werror -Wextra -g
 LIBFLAGS = -L/usr/lib -lX11 -lXext -lXrandr -lXi -lXinerama -lXcursor -lm
 IFLAGS = -I$(INC_DIR)
 
@@ -40,7 +40,7 @@ OBJ_DIR				= 		obj
 
 # SO_LONG
 
-SRC_FILES 			=		so_long map_check errors_so_long test utils/map/free_map utils/map/read_map utils/map/copy_map utils/map/check_map utils/map/flood_fill
+SRC_FILES 			=		so_long errors_so_long test utils/map/clean utils/map/read_map utils/map/copy_map utils/map/check_map utils/map/flood_fill utils/hooks/hooks utils/map/draw_map
 SRCS				=		$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJS				=		$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
@@ -58,7 +58,6 @@ MLX_TARGET_PATH		=		$(MLX_PATH)/$(MLX_TARGET)
 #TARGET
 
 NAME				=		so_long
-NAME_FR				=		so_long
 LIB_TARGET			=		$(LIBFT_TARGET) $(MLX_TARGET)
 
 # LIBFT COMPILATION
@@ -74,6 +73,8 @@ LIBFT_TARGET_PATH	= 		$(LIBFT_PATH)/$(LIBFT_TARGET)
 
 all:						$(NAME)
 
+fr: CFLAGS += -DLANG_FR
+fr: re
 
 clean:
 							@$(RM) -r $(OBJ_DIR)

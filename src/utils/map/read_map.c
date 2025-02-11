@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/10 11:43:34 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:02:02 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ static int	populate_map_grid(int fd, t_game *map)
 	char	*line;
 	int		len;
 
-	map->height = 0;
+	map->m_height = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
 		len = ft_strlen(line);
 		if (line[len - 1] == '\n')
 			line[len - 1] = '\0';
-		map->grid[map->height] = ft_strdup(line);
+		map->grid[map->m_height] = ft_strdup(line);
 		free(line);
-		map->height++;
+		map->m_height++;
 		line = get_next_line(fd);
 	}
 	return (RET_OK);
@@ -70,7 +70,7 @@ int	read_map(t_game *map)
 	fd = open(map->map_file, O_RDONLY);
 	if (fd == -1)
 		return (perror("Error opening file\n"), -1);
-	line_count = get_map_dimensions(fd, &map->width);
+	line_count = get_map_dimensions(fd, &map->m_width);
 	map->grid = malloc(sizeof(char *) * (line_count + 1));
 	if (!map->grid)
 	{
