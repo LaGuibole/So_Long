@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 13:31:16 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:14:36 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void draw_map(t_game *game)
 void	init_graphics(t_game *game)
 {
 	game->img_wall = mlx_xpm_file_to_image(game->mlx, "./sprites/walls/wall.xpm", &game->img_width, &game->img_height);
-	game->img_pacman = mlx_xpm_file_to_image(game->mlx, "./sprites/pacman/pacman_up_open.xpm", &game->img_width, &game->img_height);
 	if (!game->img_wall)
 		ft_printf("Fail to load img");
+	load_sprites(game);
 }

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 16:24:57 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:08:27 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_null(t_game *data)
 	data->m_height = 0;
 	data->img_wall = NULL;
 	data->moves = 0;
+	data->tick = 0;
 }
 int	main(int argc, char **argv)
 {
@@ -51,6 +52,7 @@ int	main(int argc, char **argv)
 	init_graphics(&game);
 	draw_map(&game);
 	mlx_key_hook(game.win, key_hooks, &game);
+	mlx_loop_hook(game.mlx, animate_pacman, &game);
 	mlx_hook(game.win, 17, 0, close_win, &game);
 	mlx_loop(game.mlx);
 	free_map(&game);

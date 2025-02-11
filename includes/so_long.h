@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 16:34:00 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:15:08 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@
 // IMG DEFINE
 
 # define WALL '1'
+# define P_L_C "./sprites/pacman/pacman_left_closed.xpm"
+# define P_L_S "./sprites/pacman/pacman_left_semi.xpm"
+# define P_L_O "./sprites/pacman/pacman_left_open.xpm"
+# define P_R_C "./sprites/pacman/pacman_right_closed.xpm"
+# define P_R_S "./sprites/pacman/pacman_right_semi.xpm"
+# define P_R_O "./sprites/pacman/pacman_right_open.xpm"
+# define P_U_C "./sprites/pacman/pacman_up_closed.xpm"
+# define P_U_S "./sprites/pacman/pacman_up_semi.xpm"
+# define P_U_O "./sprites/pacman/pacman_up_open.xpm"
+# define P_D_C "./sprites/pacman/pacman_down_closed.xpm"
+# define P_D_S "./sprites/pacman/pacman_down_semi.xpm"
+# define P_D_O "./sprites/pacman/pacman_down_open.xpm"
+
+
 
 // HOOKS DEFINE
 
@@ -86,6 +100,13 @@ typedef struct s_game
 	void	*img_pacman;
 	int		img_width;
 	int		img_height;
+
+	void	*sprites[4][3];
+	int		current_dir;
+	int		current_frame;
+	int		moving;
+
+	int		tick;
 } t_game;
 
 // typedef enum s_state
@@ -128,5 +149,8 @@ void 	draw_map(t_game *game);
 void	init_graphics(t_game *game);
 
 void	move_player(t_game *game, int gx, int gy);
+
+int		animate_pacman(void *param);
+void	load_sprites(t_game *game);
 
 #endif
