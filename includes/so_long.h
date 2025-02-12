@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 18:14:05 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:31:39 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,9 @@ typedef struct s_game
 
 	int		print_x;
 	int		print_y;
+
+	int		dir_x;
+	int		dir_y;
 } t_game;
 
 // typedef enum s_state
