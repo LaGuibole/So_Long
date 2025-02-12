@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:39:28 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 12:31:01 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:23:08 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,32 @@ void	clean_lines(char **map, int height)
 	free(map);
 }
 
+void	clean_sprites(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 3)
+		{
+			mlx_destroy_image(game->mlx, game->sprites[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	cleanup(t_game *game)
 {
 	clean_lines(game->grid, game->m_height);
 	game->grid = NULL;
 	if (game->img_wall)
 		mlx_destroy_image(game->mlx, game->img_wall);
-	if (game->img_pacman)
-		mlx_destroy_image(game->mlx, game->img_pacman);
+	if (game->sprites)
+		clean_sprites(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 18:08:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:23:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	init_null(t_game *data)
 	data->img_wall = NULL;
 	data->moves = 0;
 	data->tick = 0;
+	data->current_dir = 0;
+	data->current_frame = 0;
+	data->moving = 1;
 }
 int	main(int argc, char **argv)
 {

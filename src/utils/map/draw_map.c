@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 18:14:36 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:46:36 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	draw_tile(t_game *game, int i, int j)
 	if (game->grid[i][j] == WALL)
 		img = game->img_wall;
 	if (game->grid[i][j] == PLAYER)
-		img = game->img_pacman;
+		img = game->sprites[game->current_dir][game->current_frame];
 	if (img)
 		mlx_put_image_to_window(game->mlx, game->win, img, j * TILE_SIZE, i * TILE_SIZE);
 }

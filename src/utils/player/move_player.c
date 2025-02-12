@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:05:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 18:17:40 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:25:12 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,25 @@ static void	player(t_game *game, int new_x, int new_y)
 	game->player_y = new_y;
 	game->player_x = new_x;
 }
-
+static void	end_game(t_game *game)
+{
+	if (game->grid[game->new_y][game->new_x] == EXIT)
+	{
+		if (game->col_count == 0)
+		{
+			ft_printf("You won with %d moves\n", game->moves);
+			close_win(game);
+			exit(EXIT_SUCCESS);
+		}
+	}
+}
 void	move_player(t_game *game, int gx, int gy)
 {
-	int	new_x;
-	int	new_y;
-
 	find_player(game);
-	new_x = game->player_x + gx;
-	new_y = game->player_y + gy;
-	if (new_x < 0 || new_x >= game->m_width || new_y < 0
-		|| new_y >= game->m_height || game->grid[new_y][new_x] == WALL)
+	game->new_x = game->player_x + gx;
+	game->new_y = game->player_y + gy;
+	if (game->new_x < 0 || game->new_x >= game->m_width || game->new_y < 0
+		|| game->new_y >= game->m_height || game->grid[game->new_y][game->new_x] == WALL)
 		return ;
 	if (gx < 0)
 		game->current_dir = 0;
@@ -46,14 +54,17 @@ void	move_player(t_game *game, int gx, int gy)
 		game->current_dir = 2;
 	if (gy > 0)
 		game->current_dir = 3;
-	if (game->grid[new_y][new_x] == COLLECTIBLE)
+	if (game->grid[game->new_y][game->new_x] == COLLECTIBLE)
 	{
-		game->grid[new_y][new_x] = FREESPACE;
+		game->grid[game->new_y][game->new_x] = FREESPACE;
 		game->col_count--;
 	}
-	game->moves++;
-	player(game, new_x, new_y);
+	game->moves++; // creer une fonction pour afficher dans le terminal
+	game->moving = 1;
+	end_game(game);
+	player(game, game->new_x, game->new_y);
 	draw_map(game);
+	game->moving = 0;
 }
 
 void	load_sprites(t_game *game)
@@ -90,15 +101,21 @@ int	animate_pacman(void *param)
 	static int	frame;
 
 	game = (t_game *)param;
-	if (game->tick % 8 == 0)
+	if (game->tick % 12 == 0)
 	{
 		frame++;
 		if (frame > 2)
 			frame = 0;
 		game->current_frame = frame;
+		draw_map(game);
 	}
+	game->tick++;
+	if (!game->moving)
+		game->current_frame = (game->tick / 12) % 3;
 	return (0);
+
 }
+
 
 
 // void	move_player(t_game *game, int gx, int gy)
