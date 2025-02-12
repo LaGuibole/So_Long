@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 12:23:00 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:37:32 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	init_null(t_game *data)
 	data->current_dir = 0;
 	data->current_frame = 0;
 	data->moving = 1;
+	// data->player_x;
+	// data->player_y
 }
 int	main(int argc, char **argv)
 {
@@ -51,7 +53,7 @@ int	main(int argc, char **argv)
 		clean_lines(game.grid, game.m_height);
 		return(EXIT_FAILURE);
 	}
-	game.win = mlx_new_window(game.mlx, game.m_width * TILE_SIZE, game.m_height * TILE_SIZE, "solong");
+	game.win = mlx_new_window(game.mlx, game.m_width * TILE_SIZE + (TILE_SIZE * 6), game.m_height * TILE_SIZE, "solong");
 	init_graphics(&game);
 	draw_map(&game);
 	mlx_key_hook(game.win, key_hooks, &game);

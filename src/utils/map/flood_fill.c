@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:40:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 16:20:50 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:47:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	find_player(t_game *map)
 		x = 0;
 		while (x < map->m_width)
 		{
+			if (map->grid[y][x] == EXIT)
+			{
+				map->exit_x = x;
+				map->exit_y = y;
+			}
 			if (map->grid[y][x] == PLAYER)
 			{
 				map->player_x = x;
@@ -77,6 +82,7 @@ int	is_path_valid(t_game *original)
 
 	copy = (t_game){};
 	copy_map(original, &copy);
+	find_player(original);
 	find_player(&copy);
 	flood_fill(&copy, copy.player_x, copy.player_y);
 	if (is_map_solvable(&copy) == RET_ERR)

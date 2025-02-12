@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/04 13:50:50 by guphilip          #+#    #+#              #
-#    Updated: 2025/02/11 13:28:25 by guphilip         ###   ########.fr        #
+#    Updated: 2025/02/12 17:50:21 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJ_DIR				= 		obj
 
 # SO_LONG
 
-SRC_FILES 			=		so_long errors_so_long test utils/map/clean utils/map/read_map utils/map/copy_map utils/map/check_map utils/map/flood_fill utils/hooks/hooks utils/map/draw_map utils/player/move_player
+SRC_FILES 			=		so_long errors_so_long test utils/map/clean utils/map/read_map utils/map/copy_map utils/map/check_map utils/map/flood_fill utils/hooks/hooks utils/map/draw_map utils/player/move_player utils/print/print_score
 SRCS				=		$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJS				=		$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 

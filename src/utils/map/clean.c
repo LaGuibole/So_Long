@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:39:28 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 10:23:08 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:48:46 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,27 @@ void	clean_sprites(t_game *game)
 	}
 }
 
+void	clean_single_sprite(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 3)
+		mlx_destroy_image(game->mlx, game->p_sprites[i++]);
+}
+
 void	cleanup(t_game *game)
 {
 	clean_lines(game->grid, game->m_height);
 	game->grid = NULL;
 	if (game->img_wall)
 		mlx_destroy_image(game->mlx, game->img_wall);
+	if (game->img_collec)
+		mlx_destroy_image(game->mlx, game->img_collec);
 	if (game->sprites)
 		clean_sprites(game);
+	if (game->p_sprites)
+		clean_single_sprite(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -79,3 +92,4 @@ void	cleanup(t_game *game)
 		game->mlx = NULL;
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 12:16:57 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:14:05 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "libft.h"
 # include "mlx.h"
 # include <fcntl.h>
+# include <sys/time.h>
+# include <time.h>
 
 // DEFINES
 
@@ -47,6 +49,22 @@
 # define P_D_C "./sprites/pacman/pacman_down_closed.xpm"
 # define P_D_S "./sprites/pacman/pacman_down_semi.xpm"
 # define P_D_O "./sprites/pacman/pacman_down_open.xpm"
+# define DOT	"./sprites/others/dot.xpm"
+# define P1		"./sprites/portal/portal1.xpm"
+# define P2		"./sprites/portal/portal2.xpm"
+# define P3		"./sprites/portal/portal3.xpm"
+# define P_0	"./sprites/others/0.xpm"
+# define P_1	"./sprites/others/1.xpm"
+# define P_2	"./sprites/others/2.xpm"
+# define P_3	"./sprites/others/3.xpm"
+# define P_4	"./sprites/others/4.xpm"
+# define P_5	"./sprites/others/5.xpm"
+# define P_6	"./sprites/others/6.xpm"
+# define P_7	"./sprites/others/7.xpm"
+# define P_8	"./sprites/others/8.xpm"
+# define P_9	"./sprites/others/9.xpm"
+
+
 
 
 
@@ -92,24 +110,30 @@ typedef struct s_game
 	int		exit_count;
 	int		player_x;
 	int		player_y;
+	int		exit_x;
+	int		exit_y;
 	int		moves;
 
 	void	*mlx;
 	void	*win;
 	void	*img_wall;
-	void	*img_pacman;
+	void	*img_collec;
+	void	*score[10];
 	int		img_width;
 	int		img_height;
 
 	void	*sprites[4][3];
+	void	*p_sprites[3];
 	int		current_dir;
 	int		current_frame;
 
 	int		moving;
 	int		tick;
-
 	int		new_x;
 	int		new_y;
+
+	int		print_x;
+	int		print_y;
 } t_game;
 
 // typedef enum s_state
@@ -153,7 +177,13 @@ void	init_graphics(t_game *game);
 
 void	move_player(t_game *game, int gx, int gy);
 
-int		animate_pacman(void *param);
+int		animate_pacman(t_game *game);
 void	load_sprites(t_game *game);
+
+void	draw_pacman(t_game *game, int x, int y);
+void	draw_tile(t_game *game, int i, int j);
+
+void    put_score(t_game *game);
+void	load_score(t_game *game);
 
 #endif
