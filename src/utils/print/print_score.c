@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:30:03 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 18:45:42 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:05:25 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void	draw_score(t_game *game, int number, int len)
 
 	img = NULL;
 	img = game->score[number];
-	mlx_put_image_to_window(game->mlx, game->win, img, TILE_SIZE * (game->m_width + len), TILE_SIZE * 3);
-
+	mlx_put_image_to_window(game->mlx, game->win, img, (TILE_SIZE + 6) * (game->m_width + len), TILE_SIZE * 3 - (TILE_SIZE / 2));
 }
 
 void    put_score(t_game *game)

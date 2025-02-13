@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 19:31:39 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:47:43 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define EXIT 'E'
 # define PLAYER_ON_EXIT 'X'
 # define FREESPACE '0'
+# define MAX_ENEMIES 4
 
 // IMG DEFINE
 
@@ -63,7 +64,21 @@
 # define P_7	"./sprites/others/7.xpm"
 # define P_8	"./sprites/others/8.xpm"
 # define P_9	"./sprites/others/9.xpm"
-
+# define _A		"./sprites/others/A.xpm"
+# define _B		"./sprites/others/B.xpm"
+# define _C		"./sprites/others/C.xpm"
+# define _E		"./sprites/others/E.xpm"
+# define _G		"./sprites/others/G.xpm"
+# define _I		"./sprites/others/I.xpm"
+# define _L		"./sprites/others/L.xpm"
+# define _M		"./sprites/others/M.xpm"
+# define _O		"./sprites/others/O.xpm"
+# define _V		"./sprites/others/V.xpm"
+# define _E		"./sprites/others/E.xpm"
+# define _S		"./sprites/others/S.xpm"
+# define _U		"./sprites/others/U.xpm"
+# define _T		"./sprites/others/T.xpm"
+# define GHOST	"./sprites/others/apple.xpm"
 
 
 
@@ -94,11 +109,6 @@
 
 // STRUCTURES
 
-typedef struct s_solong
-{
-
-}	t_solong;
-
 typedef struct s_game
 {
 	char	*map_file;
@@ -119,11 +129,15 @@ typedef struct s_game
 	void	*img_wall;
 	void	*img_collec;
 	void	*score[10];
+	void	*sprites[4][3];
+	void	*p_sprites[3];
+	void	*pr_moves[5];
+	void	*cols[10];
+	void	*pr_cols[9];
+	void	*pr_name[9];
 	int		img_width;
 	int		img_height;
 
-	void	*sprites[4][3];
-	void	*p_sprites[3];
 	int		current_dir;
 	int		current_frame;
 
@@ -135,16 +149,11 @@ typedef struct s_game
 	int		print_x;
 	int		print_y;
 
-	int		dir_x;
-	int		dir_y;
+	int		enemy_x[MAX_ENEMIES];
+	int		enemy_y[MAX_ENEMIES];
+	int		enemy_count;
+	void	*img_enemy;
 } t_game;
-
-// typedef enum s_state
-// {
-// 	FOPEN,
-// 	OPEN,
-// 	CLOSE
-// }	t_state;
 
 // FUNCTIONS
 
@@ -188,5 +197,18 @@ void	draw_tile(t_game *game, int i, int j);
 
 void    put_score(t_game *game);
 void	load_score(t_game *game);
+void	load_titles(t_game *game);
+void	print_title(t_game *game);
+
+void    put_cols(t_game *game);
+
+void	print_col_title(t_game *game);
+void	load_to_collect(t_game *game);
+
+void	load_name(t_game *game);
+void	print_name(t_game *game);
+
+void	draw_enemies(t_game *game);
+void	spawn_enemies(t_game *game);
 
 #endif

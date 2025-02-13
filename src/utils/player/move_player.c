@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:05:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 18:36:10 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:26:06 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,13 +183,14 @@ void	draw_pacman(t_game *game, int x, int y)
 
 int	animate_pacman(t_game *game)
 {
-	static unsigned long	last_frame_time = 0;
+	static unsigned long	last_frame_time;
 	unsigned long		current_time;
 	unsigned long		elapsed_time;
-
+	
+	if (last_frame_time == 0)
+		last_frame_time = (long)get_time_ms;
 	current_time = get_time_ms();
 	elapsed_time = current_time - last_frame_time;
-
 	if (elapsed_time > 150)
 	{
 		draw_tile(game, game->player_y, game->player_x);

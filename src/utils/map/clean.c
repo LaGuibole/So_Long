@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:39:28 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 19:20:03 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:52:21 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,18 @@ void	clean_single_sprite(t_game *game)
 	i = 0;
 	while (i < 3)
 		mlx_destroy_image(game->mlx, game->p_sprites[i++]);
+	i = 0;
+	while (i < 5)
+		mlx_destroy_image(game->mlx, game->pr_moves[i++]);
+	i = 0;
+	while (i < 9)
+	{
+		mlx_destroy_image(game->mlx, game->pr_cols[i]);
+		mlx_destroy_image(game->mlx, game->pr_name[i++]);
+	}
+	i = 0;
+	while (i < 10)
+		mlx_destroy_image(game->mlx, game->score[i++]);
 }
 
 void	cleanup(t_game *game)
@@ -79,9 +91,11 @@ void	cleanup(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_wall);
 	if (game->img_collec)
 		mlx_destroy_image(game->mlx, game->img_collec);
+	if (game->img_enemy)
+		mlx_destroy_image(game->mlx, game->img_enemy);
 	if (game->sprites)
 		clean_sprites(game);
-	if (game->p_sprites)
+	if (game->p_sprites || game->pr_moves || game->score || game->pr_cols)
 		clean_single_sprite(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
