@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 12:27:06 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:26:47 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_null(t_game *data)
 	data->current_dir = 0;
 	data->current_frame = 0;
 	data->moving = 1;
+	data->spawn_space = 0;
 }
 int	main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 17:47:43 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:50:12 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 // IMG DEFINE
 
 # define WALL '1'
+# define GROUND "./sprites/walls/free_space.xpm"
 # define P_L_C "./sprites/pacman/pacman_left_closed.xpm"
 # define P_L_S "./sprites/pacman/pacman_left_semi.xpm"
 # define P_L_O "./sprites/pacman/pacman_left_open.xpm"
@@ -127,6 +128,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	void	*img_wall;
+	void	*img_ground;
 	void	*img_collec;
 	void	*score[10];
 	void	*sprites[4][3];
@@ -151,8 +153,11 @@ typedef struct s_game
 
 	int		enemy_x[MAX_ENEMIES];
 	int		enemy_y[MAX_ENEMIES];
-	int		enemy_count;
+	int		old_e_x[MAX_ENEMIES];
+	int		old_e_y[MAX_ENEMIES];
 	void	*img_enemy;
+	int		enemy_count;
+	int		spawn_space;
 } t_game;
 
 // FUNCTIONS
@@ -210,5 +215,10 @@ void	print_name(t_game *game);
 
 void	draw_enemies(t_game *game);
 void	spawn_enemies(t_game *game);
-
+void	check_player_death(t_game *game);
+void	move_enemies(t_game *game);
+int		animate_enemies(t_game *game);
+void	refresh_enemies(t_game *game);
+int		animate_ghost(t_game *game);
+unsigned long	get_time_ms(void);
 #endif

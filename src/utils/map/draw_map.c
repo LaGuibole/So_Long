@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 17:49:33 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:38:07 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	draw_tile(t_game *game, int i, int j)
 	void	*img;
 
 	img = NULL;
+	if (game->grid[i][j] == FREESPACE)
+		img = game->img_ground;
 	if (game->grid[i][j] == WALL)
 		img = game->img_wall;
 	if (game->grid[i][j] == PLAYER)
@@ -62,6 +64,7 @@ void	init_graphics(t_game *game)
 	if (!game->img_collec)
 		ft_printf("Fail to load img");
 	game->img_enemy = mlx_xpm_file_to_image(game->mlx, GHOST, &game->img_width, &game->img_height);
+	game->img_ground = mlx_xpm_file_to_image(game->mlx, GROUND, &game->img_width, &game->img_height);
 	spawn_enemies(game);
 	draw_enemies(game);
 	load_score(game);

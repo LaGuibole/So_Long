@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:15:43 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 17:49:13 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:37:34 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	key_hooks(int keycode, t_game *game)
 		move_player(game, 0, 1);
 	else if (keycode == D || keycode == RIGHT)
 		move_player(game, 1, 0);
-	mlx_clear_window(game->mlx, game->win);
 	draw_map(game);
-	draw_enemies(game);
 	put_score(game);
 	put_cols(game);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/10 17:50:32 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:36:28 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	has_valid_elements(t_game *map)
 				map->grid[i][j] != 'E' && map->grid[i][j] != 'C' &&
 				map->grid[i][j] != 'P')
 				return (RET_ERR);
+			else if (map->grid[i][j] == '0')
+				map->spawn_space++;
 		}
 	}
 	return (RET_OK);

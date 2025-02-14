@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:39:28 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 17:52:21 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:33:25 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	cleanup(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_wall);
 	if (game->img_collec)
 		mlx_destroy_image(game->mlx, game->img_collec);
+	if (game->img_ground)
+		mlx_destroy_image(game->mlx, game->img_ground);
 	if (game->img_enemy)
 		mlx_destroy_image(game->mlx, game->img_enemy);
 	if (game->sprites)
