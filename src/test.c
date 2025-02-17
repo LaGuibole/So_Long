@@ -6,12 +6,20 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 15:25:35 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:09:48 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/so_long.h"
 # include "../includes/messages.h"
+
+void	init_null_enemy(t_enemy *data)
+{
+	data->new_x = 0;
+	data->new_y = 0;
+	data->x = 0;
+	data->y = 0;
+}
 
 void	init_null(t_game *data)
 {
@@ -27,6 +35,7 @@ void	init_null(t_game *data)
 	data->current_frame = 0;
 	data->moving = 1;
 	data->spawn_space = 0;
+	init_null_enemy(data->enemies);
 }
 int	main(int argc, char **argv)
 {

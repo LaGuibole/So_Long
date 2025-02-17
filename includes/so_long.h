@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 15:27:23 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:06:29 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ typedef struct s_enemy
 	int	old_x;
 	int	old_y;
 	int	direction;
+	int		new_x;
+	int		new_y;
 }	t_enemy;
 
 typedef struct s_game

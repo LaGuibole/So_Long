@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:45:05 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 15:44:05 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:36:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,53 +47,6 @@ void	draw_enemies(t_game *game)
 		i++;
 	}
 }
-
-void	move_enemies(t_game *game)
-{
-	int	i;
-	int	direction;
-	int	new_x;
-	int	new_y;
-
-	i = 0;
-	while (i < game->enemy_count)
-	{
-		game->enemies[i].old_x = game->enemies[i].x;
-		game->enemies[i].old_y = game->enemies[i].y;
-		direction = rand() % 4;
-		new_x = game->enemies[i].x;
-		new_y = game->enemies[i].y;
-		if (direction == 0)
-			new_y -= 1;
-		else if (direction == 1)
-			new_y += 1;
-		else if (direction == 2)
-			new_x -= 1;
-		else if (direction == 3)
-			new_x += 1;
-		if (new_x >= 0 && new_x < game->m_width && new_y >= 0 && new_y < game->m_height && game->grid[new_y][new_x] != WALL && game->grid[new_y][new_x] != EXIT)
-		{
-			game->enemies[i].x = new_x;
-			game->enemies[i].y = new_y;
-		}
-		i++;
-	}
-}
-
-// void	refresh_enemies(t_game *game)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < game->enemy_count)
-// 	{
-// 		mlx_put_image_to_window(game->mlx, game->win, game->img_enemy, game->enemies[i].x * TILE_SIZE, game->enemies[i].y * TILE_SIZE);
-// 		draw_tile(game, game->enemies[i].old_y, game->enemies[i].old_x);
-// 		game->enemies[i].old_x = game->enemies[i].x;
-// 		game->enemies[i].old_y = game->enemies[i].y;
-// 		i++;
-// 	}
-// }
 
 void	refresh_enemies(t_game *game)
 {
