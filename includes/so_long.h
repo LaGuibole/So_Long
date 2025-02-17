@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 16:06:29 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:13:44 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 // IMG DEFINE
 
 # define WALL '1'
+# define WALL_IMG "./sprites/walls/wall.xpm"
 # define GROUND "./sprites/walls/free_space.xpm"
 # define P_L_C "./sprites/pacman/pacman_left_closed.xpm"
 # define P_L_S "./sprites/pacman/pacman_left_semi.xpm"
@@ -223,7 +224,7 @@ void	print_name(t_game *game);
 void	draw_enemies(t_game *game);
 void	spawn_enemies(t_game *game);
 void	check_player_death(t_game *game);
-void	move_enemies(t_game *game);
+void	move_enemies(t_game *game, int index);
 int		animate_enemies(t_game *game);
 void	refresh_enemies(t_game *game);
 int		animate_ghosts(t_game *game);

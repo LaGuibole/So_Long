@@ -6,13 +6,12 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/14 17:36:28 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:06:52 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
-
 
 /// @brief A function to check if the map has .ber extension
 /// @param map_file will be argv[1] so the map file

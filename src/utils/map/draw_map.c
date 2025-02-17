@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 15:19:40 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:14:03 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_tile(t_game *game, int i, int j)
 		mlx_put_image_to_window(game->mlx, game->win, img, j * TILE_SIZE, i * TILE_SIZE);
 }
 
-void draw_map(t_game *game)
+void	draw_map(t_game *game)
 {
 	int	i;
 	int	j;
@@ -65,16 +65,25 @@ void draw_map(t_game *game)
 	print_name(game);
 }
 
+void	load_images(t_game *game)
+{
+	game->img_wall = mlx_xpm_file_to_image(game->mlx, WALL_IMG,
+			&game->img_width, &game->img_height);
+	if (!game->img_wall)
+		ft_printf("Fail to load img\n");
+	game->img_collec = mlx_xpm_file_to_image(game->mlx, DOT,
+			&game->img_width, &game->img_height);
+	if (!game->img_collec)
+		ft_printf("Fail to load img\n");
+	game->img_enemy = mlx_xpm_file_to_image(game->mlx, GHOST,
+			&game->img_width, &game->img_height);
+	game->img_ground = mlx_xpm_file_to_image(game->mlx, GROUND,
+			&game->img_width, &game->img_height);
+}
+
 void	init_graphics(t_game *game)
 {
-	game->img_wall = mlx_xpm_file_to_image(game->mlx, "./sprites/walls/wall.xpm", &game->img_width, &game->img_height);
-	if (!game->img_wall)
-		ft_printf("Fail to load img");
-	game->img_collec = mlx_xpm_file_to_image(game->mlx, DOT, &game->img_width, &game->img_height);
-	if (!game->img_collec)
-		ft_printf("Fail to load img");
-	game->img_enemy = mlx_xpm_file_to_image(game->mlx, GHOST, &game->img_width, &game->img_height);
-	game->img_ground = mlx_xpm_file_to_image(game->mlx, GROUND, &game->img_width, &game->img_height);
+	load_images(game);
 	spawn_enemies(game);
 	draw_enemies(game);
 	load_score(game);

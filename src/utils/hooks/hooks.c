@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:15:43 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 15:44:08 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:17:12 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	key_hooks(int keycode, t_game *game)
 
 int	game_loop(void	*param)
 {
-	t_game *game = (t_game *)param;
+	t_game	*game;
+
+	game = (t_game *)param;
 	animate_pacman(game);
 	animate_ghosts(game);
 	refresh_enemies(game);
 	return (0);
 }
-
-

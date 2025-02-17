@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:05:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 15:51:31 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:20:24 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	player(t_game *game, int new_x, int new_y)
 	game->player_y = new_y;
 	game->player_x = new_x;
 }
+
 static void	end_game(t_game *game)
 {
 	int	i;
@@ -42,7 +43,8 @@ static void	end_game(t_game *game)
 	i = 0;
 	while (i < game->enemy_count && game->spawn_space > 5)
 	{
-		if (game->new_x == game->enemies[i].x && game->new_y == game->enemies[i].y)
+		if (game->new_x == game->enemies[i].x
+			&& game->new_y == game->enemies[i].y)
 		{
 			ft_printf("Game Over, Pac-Man got caught!\n");
 			close_win(game);
@@ -56,7 +58,8 @@ void	move_player(t_game *game, int gx, int gy)
 	game->new_x = game->player_x + gx;
 	game->new_y = game->player_y + gy;
 	if (game->new_x < 0 || game->new_x >= game->m_width || game->new_y < 0
-		|| game->new_y >= game->m_height || game->grid[game->new_y][game->new_x] == WALL)
+		|| game->new_y >= game->m_height
+		|| game->grid[game->new_y][game->new_x] == WALL)
 		return ;
 	if (gx < 0)
 		game->current_dir = 0;
@@ -77,9 +80,10 @@ void	move_player(t_game *game, int gx, int gy)
 	player(game, game->new_x, game->new_y);
 	draw_tile(game, game->new_y, game->new_x);
 }
+
 void	load_sprites(t_game *game)
 {
-	int w;
+	int	w;
 	int	h;
 
 	game->sprites[0][0] = mlx_xpm_file_to_image(game->mlx, P_L_C, &w, &h);
@@ -112,7 +116,8 @@ void	draw_pacman(t_game *game, int x, int y)
 	void	*sprite;
 
 	sprite = game->sprites[game->current_dir][game->current_frame];
-	mlx_put_image_to_window(game->mlx, game->win, sprite, x * TILE_SIZE, y * TILE_SIZE);
+	mlx_put_image_to_window(game->mlx, game->win, sprite,
+							x * TILE_SIZE, y * TILE_SIZE);
 }
 
 int	animate_pacman(t_game *game)

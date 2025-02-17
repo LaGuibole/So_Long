@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:45:05 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 16:36:23 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:04:38 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	animate_ghosts(t_game *game)
 
 	if (elapsed_time > 500)
 	{
-		move_enemies(game);
+		move_enemies(game, 0);
 		refresh_enemies(game);
 		last_ghost_time = current_time;
 	}

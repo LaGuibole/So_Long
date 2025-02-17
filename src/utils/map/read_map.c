@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/11 10:02:02 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:07:30 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,22 +90,26 @@ int	read_map(t_game *map)
 
 int	map_check(t_game *map)
 {
-	t_game copy;
+	t_game	copy;
 
 	copy = (t_game){};
 	copy_map(map, &copy);
 	if (!copy.grid)
 		return (ft_putendl_fd(MSG_ERROR_COPY, 2), RET_ERR);
 	if (is_rectangular(map) == RET_ERR)
-		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_RECTANGLE, 2), RET_ERR);
+		return (free_map(&copy),
+			ft_putendl_fd(MSG_ERROR_RECTANGLE, 2),
+			RET_ERR);
 	if (is_bordered_with_walls(map) == RET_ERR)
-		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_WALLS, 2), RET_ERR);
+		return (free_map(&copy), ft_putendl_fd(MSG_ERROR_WALLS, 2), RET_ERR);
 	if (has_valid_elements(map) == RET_ERR)
-		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_INVALID, 2), RET_ERR);
+		return (free_map(&copy), ft_putendl_fd(MSG_ERROR_INVALID, 2), RET_ERR);
 	if (has_required_elements(map) == RET_ERR)
-		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_MISSING, 2), RET_ERR);
+		return (free_map(&copy), ft_putendl_fd(MSG_ERROR_MISSING, 2), RET_ERR);
 	if (is_path_valid(map) == RET_ERR)
-		return (free_map(&copy),ft_putendl_fd(MSG_ERROR_UNSOLVABLE, 2), RET_ERR);
+		return (free_map(&copy),
+			ft_putendl_fd(MSG_ERROR_UNSOLVABLE, 2),
+			RET_ERR);
 	free_map(&copy);
 	return (ft_putendl_fd(MSG_MAP_SUCCESS, 1), RET_OK);
 }
