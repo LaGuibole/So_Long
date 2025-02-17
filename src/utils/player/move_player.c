@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:05:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/14 17:40:22 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:43:03 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	end_game(t_game *game)
 	i = 0;
 	while (i < game->enemy_count && game->spawn_space > 5)
 	{
-		if (game->new_x == game->enemy_x[i] && game->new_y == game->enemy_y[i])
+		if (game->new_x == game->enemies[i].x && game->new_y == game->enemies[i].y)
 		{
 			ft_printf("Game Over, Pac-Man got caught!\n");
 			close_win(game);
@@ -125,7 +125,7 @@ int	animate_pacman(t_game *game)
 		last_frame_time = (long)get_time_ms();
 	current_time = get_time_ms();
 	elapsed_time = current_time - last_frame_time;
-	if (elapsed_time > 200)
+	if (elapsed_time > 500)
 	{
 		draw_tile(game, game->player_y, game->player_x);
 		draw_tile(game, game->exit_y, game->exit_x);
@@ -133,13 +133,6 @@ int	animate_pacman(t_game *game)
 		last_frame_time = current_time;
 		draw_tile(game, game->player_y, game->player_x);
 		draw_tile(game, game->exit_y, game->exit_x);
-		if (game->spawn_space > 5)
-		{
-			draw_enemies(game);
-			refresh_enemies(game);
-			move_enemies(game);
-			refresh_enemies(game);
-		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/14 17:50:12 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:27:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@
 # define _S		"./sprites/others/S.xpm"
 # define _U		"./sprites/others/U.xpm"
 # define _T		"./sprites/others/T.xpm"
-# define GHOST	"./sprites/others/apple.xpm"
-
-
+# define GHOST	"./sprites/ghosts/blinky.xpm"
 
 
 // HOOKS DEFINE
@@ -109,6 +107,14 @@
 # define RESET "\033[0m"
 
 // STRUCTURES
+typedef struct s_enemy
+{
+	int	x;
+	int	y;
+	int	old_x;
+	int	old_y;
+	int	direction;
+}	t_enemy;
 
 typedef struct s_game
 {
@@ -151,10 +157,9 @@ typedef struct s_game
 	int		print_x;
 	int		print_y;
 
-	int		enemy_x[MAX_ENEMIES];
-	int		enemy_y[MAX_ENEMIES];
-	int		old_e_x[MAX_ENEMIES];
-	int		old_e_y[MAX_ENEMIES];
+	t_enemy enemies[MAX_ENEMIES];
+	int		en_x;
+	int		en_y;
 	void	*img_enemy;
 	int		enemy_count;
 	int		spawn_space;
@@ -219,6 +224,7 @@ void	check_player_death(t_game *game);
 void	move_enemies(t_game *game);
 int		animate_enemies(t_game *game);
 void	refresh_enemies(t_game *game);
-int		animate_ghost(t_game *game);
+int		animate_ghosts(t_game *game);
 unsigned long	get_time_ms(void);
+int	game_loop(void	*param);
 #endif

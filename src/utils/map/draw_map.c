@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/14 17:38:07 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:19:40 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,18 @@
 void	draw_tile(t_game *game, int i, int j)
 {
 	void	*img;
+	int		compare;
 
+	compare = 0;
 	img = NULL;
+	while (compare < game->enemy_count)
+	{
+		if (game->enemies[compare].x == j && game->enemies[compare].y == i)
+		{
+			img = game->img_enemy;
+		}
+		compare++;
+	}
 	if (game->grid[i][j] == FREESPACE)
 		img = game->img_ground;
 	if (game->grid[i][j] == WALL)

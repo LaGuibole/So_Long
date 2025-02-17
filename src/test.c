@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/14 17:26:47 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:25:35 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	init_graphics(&game);
 	draw_map(&game);
 	mlx_key_hook(game.win, key_hooks, &game);
-	mlx_loop_hook(game.mlx, animate_pacman, &game);
+	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_hook(game.win, 17, 0, close_win, &game);
 	mlx_loop(game.mlx);
 	free_map(&game);

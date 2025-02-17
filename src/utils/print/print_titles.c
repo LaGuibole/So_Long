@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:54:20 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 14:23:50 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:13:41 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	load_titles(t_game *game)
 	game->pr_moves[3] = mlx_xpm_file_to_image(game->mlx, _E, &w, &h);
 	game->pr_moves[4] = mlx_xpm_file_to_image(game->mlx, _S, &w, &h);
 }
-
+/// @brief
+/// @param game
 void	load_to_collect(t_game *game)
 {
 	int w;
