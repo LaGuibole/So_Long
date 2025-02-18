@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 13:54:26 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:53:14 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*get_tile_image(t_game *game, int i, int j)
 
 	compare = 0;
 	img = NULL;
-	while (compare < game->enemy_count)
+	while (compare < game->enemy_count && game->spawn_space > 5 && game->m_height > 3)
 	{
 		if (game->enemies[compare].x == j && game->enemies[compare].y == i)
 			return (game->img_enemy);
@@ -98,4 +98,36 @@ void	init_graphics(t_game *game)
 	load_titles(game);
 	load_to_collect(game);
 	load_name(game);
+	draw_map(game);
 }
+
+
+// void	draw_tile(t_game *game, int i, int j)
+// {
+// 	void	*img;
+// 	int		compare;
+
+// 	compare = 0;
+// 	img = NULL;
+// 	while (compare < game->enemy_count)
+// 	{
+// 		if (game->enemies[compare].x == j && game->enemies[compare].y == i)
+// 			img = game->img_enemy;
+// 		compare++;
+// 	}
+// 	if (game->grid[i][j] == FREESPACE)
+// 		img = game->img_ground;
+// 	if (game->grid[i][j] == WALL)
+// 		img = game->img_wall;
+// 	if (game->grid[i][j] == PLAYER)
+// 		img = game->sprites[game->current_dir][game->current_frame];
+// 	if (game->grid[i][j] == COLLECTIBLE)
+// 		img = game->img_collec;
+// 	if (game->grid[i][j] == EXIT)
+// 		img = game->p_sprites[game->current_frame];
+// 	if (game->grid[i][j] == PLAYER_ON_EXIT)
+// 		img = game->sprites[game->current_dir][game->current_frame];
+// 	if (img)
+// 		mlx_put_image_to_window(game->mlx, game->win, img,
+// 			j * TILE_SIZE, i * TILE_SIZE);
+// }

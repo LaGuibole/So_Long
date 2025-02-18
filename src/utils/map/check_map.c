@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 17:06:52 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:33:17 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	has_ber_extension(t_game *map)
 	str_cpy = map->map_file + ft_strlen(map->map_file) - 4;
 	return (ft_strcmp(str_cpy, ".ber"));
 }
-
+/// @brief Check if the map is rectangular
+/// @param map
+/// @return 0 if rectangular 1 otherwise
 int	is_rectangular(t_game *map)
 {
 	int	i;
@@ -41,7 +43,9 @@ int	is_rectangular(t_game *map)
 	}
 	return (RET_OK);
 }
-
+/// @brief Check if the map is bordered with 1
+/// @param map
+/// @return return 0 if ok, 1 otherwise
 int	is_bordered_with_walls(t_game *map)
 {
 	int	i;
@@ -64,7 +68,9 @@ int	is_bordered_with_walls(t_game *map)
 	}
 	return (RET_OK);
 }
-
+/// @brief Check if the map has only valid elements (E, C, P, 0, 1)
+/// @param map
+/// @return 0 if ok, 1 on error
 int	has_valid_elements(t_game *map)
 {
 	int	i;
@@ -88,7 +94,9 @@ int	has_valid_elements(t_game *map)
 	}
 	return (RET_OK);
 }
-
+/// @brief Check if the map has only one player, one exit and at least 1 collec
+/// @param map
+/// @return 0 if ok, 1 on error
 int	has_required_elements(t_game *map)
 {
 	int	i;

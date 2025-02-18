@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:39:28 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 17:07:55 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:41:35 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Free the memory allocated for the game map grid
+/// @param map Pointer to the game structure containing the map
 void	free_map(t_game *map)
 {
 	int	i;
@@ -30,6 +32,9 @@ void	free_map(t_game *map)
 	}
 }
 
+/// @brief Frees memory allocated for 2D map array
+/// @param map Pointer to the 2D array of strings
+/// @param height Number of rows in the map
 void	clean_lines(char **map, int height)
 {
 	int	i;
@@ -44,6 +49,8 @@ void	clean_lines(char **map, int height)
 	free(map);
 }
 
+/// @brief Destroy int tabs that contain multiple sprites
+/// @param game
 void	clean_sprites(t_game *game)
 {
 	int	i;
@@ -62,6 +69,8 @@ void	clean_sprites(t_game *game)
 	}
 }
 
+/// @brief Destroy int tab that contain sprites
+/// @param game
 void	clean_single_sprite(t_game *game)
 {
 	int	i;
@@ -83,6 +92,8 @@ void	clean_single_sprite(t_game *game)
 		mlx_destroy_image(game->mlx, game->score[i++]);
 }
 
+/// @brief Main cleanup function to free all assets before exit
+/// @param game
 void	cleanup(t_game *game)
 {
 	clean_lines(game->grid, game->m_height);

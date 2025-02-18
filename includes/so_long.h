@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 14:20:08 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:04:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define EXIT 'E'
 # define PLAYER_ON_EXIT 'X'
 # define FREESPACE '0'
-# define MAX_ENEMIES 4
+# define MAX_ENEMIES 1
 
 // IMG DEFINE
 

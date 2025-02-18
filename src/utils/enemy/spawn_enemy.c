@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:45:05 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 14:19:53 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:53:03 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	spawn_enemies(t_game *game)
 
 	game->enemy_count = MAX_ENEMIES;
 	i = 0;
-	while (i < game->enemy_count && game->spawn_space > 5)
+	while (i < game->enemy_count && game->spawn_space > 5 && game->m_height > 3)
 	{
 		x = rand() % game->m_width;
 		y = rand() % game->m_height;
@@ -41,7 +41,7 @@ void	draw_enemies(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->enemy_count)
+	while (i < game->enemy_count && game->spawn_space > 5 && game->m_height > 3)
 	{
 		mlx_put_image_to_window(game->mlx,
 			game->win,
@@ -62,7 +62,7 @@ void	refresh_enemies(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->enemy_count)
+	while (i < game->enemy_count && game->spawn_space > 5 && game->m_height > 3)
 	{
 		if (game->enemies[i].old_x != game->enemies[i].x
 			|| game->enemies[i].old_y != game->enemies[i].y)

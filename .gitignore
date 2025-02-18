@@ -8,3 +8,4 @@ includes/libft.h
 includes/mlx.h
 *.o
 .valgrindrc
+.idea
