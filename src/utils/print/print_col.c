@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:35:25 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 17:38:53 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:46:20 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_cols(t_game *game, int number, int len)
 	img = game->score[number];
 	mlx_put_image_to_window(game->mlx,
 		game->win, img,
-		(TILE_SIZE) * (game->m_width + len + 5),
+		TILE_SIZE * (game->m_width + len + 5),
 		TILE_SIZE * 6 + (TILE_SIZE / 2));
 }
 
@@ -46,7 +46,7 @@ void	clear_old_score(t_game *game, int len)
 	while (i < len + 1)
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->img_ground,
-			(TILE_SIZE) * (game->m_width + i + 7),
+			TILE_SIZE * (game->m_width + i + 7),
 			TILE_SIZE * 6 + (TILE_SIZE / 2));
 		i++;
 	}
@@ -66,11 +66,9 @@ void	put_cols(t_game *game)
 	{
 		mlx_put_image_to_window(game->mlx,
 			game->win, game->score[0],
-			(TILE_SIZE) * (game->m_width + len - 1 + 7),
+			TILE_SIZE * (game->m_width + len - 1 + 7),
 			TILE_SIZE * 6 + (TILE_SIZE / 2));
-		number /= 10;
-		++i;
-		// return ;
+		return ;
 	}
 	while (number != 0)
 	{

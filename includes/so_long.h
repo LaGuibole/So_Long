@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 16:04:00 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:21:04 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,4 +232,14 @@ void	refresh_enemies(t_game *game);
 int		animate_ghosts(t_game *game);
 unsigned long	get_time_ms(void);
 int	game_loop(void	*param);
+
+void	check_pacman_texture_paths(t_game *game);
+void	check_map_texture_paths(t_game *game);
+void	check_prints_score_texture_path(t_game *game);
+void	check_move_title_texture_path(t_game *game);
+void	check_tocollect_texture_path(t_game *game);
+
+
+void	clean_and_exit(t_game *game, char *error_msg);
+void	global_texture_check(t_game *game);
 #endif

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 15:53:14 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:21:57 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	init_graphics(t_game *game)
 	load_titles(game);
 	load_to_collect(game);
 	load_name(game);
+	// global_texture_check(game);
 	draw_map(game);
 }
 

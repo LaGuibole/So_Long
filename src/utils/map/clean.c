@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:39:28 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 14:41:35 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:17:47 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	clean_sprites(t_game *game)
 		j = 0;
 		while (j < 3)
 		{
-			mlx_destroy_image(game->mlx, game->sprites[i][j]);
+			if (game->sprites[i][j])
+				mlx_destroy_image(game->mlx, game->sprites[i][j]);
 			j++;
 		}
 		i++;
