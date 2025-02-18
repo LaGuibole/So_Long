@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:05:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 17:20:24 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 13:57:06 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,28 +81,6 @@ void	move_player(t_game *game, int gx, int gy)
 	draw_tile(game, game->new_y, game->new_x);
 }
 
-void	load_sprites(t_game *game)
-{
-	int	w;
-	int	h;
-
-	game->sprites[0][0] = mlx_xpm_file_to_image(game->mlx, P_L_C, &w, &h);
-	game->sprites[0][1] = mlx_xpm_file_to_image(game->mlx, P_L_S, &w, &h);
-	game->sprites[0][2] = mlx_xpm_file_to_image(game->mlx, P_L_O, &w, &h);
-	game->sprites[1][0] = mlx_xpm_file_to_image(game->mlx, P_R_C, &w, &h);
-	game->sprites[1][1] = mlx_xpm_file_to_image(game->mlx, P_R_S, &w, &h);
-	game->sprites[1][2] = mlx_xpm_file_to_image(game->mlx, P_R_O, &w, &h);
-	game->sprites[2][0] = mlx_xpm_file_to_image(game->mlx, P_U_C, &w, &h);
-	game->sprites[2][1] = mlx_xpm_file_to_image(game->mlx, P_U_S, &w, &h);
-	game->sprites[2][2] = mlx_xpm_file_to_image(game->mlx, P_U_O, &w, &h);
-	game->sprites[3][0] = mlx_xpm_file_to_image(game->mlx, P_D_C, &w, &h);
-	game->sprites[3][1] = mlx_xpm_file_to_image(game->mlx, P_D_S, &w, &h);
-	game->sprites[3][2] = mlx_xpm_file_to_image(game->mlx, P_D_O, &w, &h);
-	game->p_sprites[0] = mlx_xpm_file_to_image(game->mlx, P1, &w, &h);
-	game->p_sprites[1] = mlx_xpm_file_to_image(game->mlx, P2, &w, &h);
-	game->p_sprites[2] = mlx_xpm_file_to_image(game->mlx, P3, &w, &h);
-}
-
 unsigned long	get_time_ms(void)
 {
 	struct timeval	tv;
@@ -111,20 +89,11 @@ unsigned long	get_time_ms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	draw_pacman(t_game *game, int x, int y)
-{
-	void	*sprite;
-
-	sprite = game->sprites[game->current_dir][game->current_frame];
-	mlx_put_image_to_window(game->mlx, game->win, sprite,
-							x * TILE_SIZE, y * TILE_SIZE);
-}
-
 int	animate_pacman(t_game *game)
 {
 	static unsigned long	last_frame_time;
-	unsigned long		current_time;
-	unsigned long		elapsed_time;
+	unsigned long			current_time;
+	unsigned long			elapsed_time;
 
 	if (last_frame_time == 0)
 		last_frame_time = (long)get_time_ms();
@@ -141,4 +110,3 @@ int	animate_pacman(t_game *game)
 	}
 	return (0);
 }
-

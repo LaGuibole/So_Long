@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:46:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 13:54:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:52:17 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	load_name(t_game *game)
 {
-	int w;
+	int	w;
 	int	h;
 
 	game->pr_name[0] = mlx_xpm_file_to_image(game->mlx, _L, &w, &h);
@@ -31,8 +31,8 @@ void	load_name(t_game *game)
 
 void	print_name(t_game *game)
 {
-	int x_start;
-	int y_pos;
+	int	x_start;
+	int	y_pos;
 	int	i;
 
 	x_start = (game->m_width + 1) * TILE_SIZE;
@@ -42,7 +42,11 @@ void	print_name(t_game *game)
 	{
 		if (i == 2)
 			x_start += TILE_SIZE;
-		mlx_put_image_to_window(game->mlx, game->win, game->pr_name[i], x_start + (i * TILE_SIZE), y_pos);
+		mlx_put_image_to_window(game->mlx,
+			game->win,
+			game->pr_name[i],
+			x_start + (i * TILE_SIZE),
+			y_pos);
 		i++;
 	}
 }

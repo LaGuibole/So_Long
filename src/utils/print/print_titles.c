@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:54:20 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 13:13:41 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:39:29 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ void	load_titles(t_game *game)
 	game->pr_moves[3] = mlx_xpm_file_to_image(game->mlx, _E, &w, &h);
 	game->pr_moves[4] = mlx_xpm_file_to_image(game->mlx, _S, &w, &h);
 }
+
 /// @brief
 /// @param game
 void	load_to_collect(t_game *game)
 {
-	int w;
+	int	w;
 	int	h;
 
 	game->pr_cols[0] = mlx_xpm_file_to_image(game->mlx, _T, &w, &h);
@@ -44,8 +45,8 @@ void	load_to_collect(t_game *game)
 
 void	print_title(t_game *game)
 {
-	int x_start;
-	int y_pos;
+	int	x_start;
+	int	y_pos;
 	int	i;
 
 	x_start = (game->m_width + 4) * TILE_SIZE;
@@ -53,15 +54,19 @@ void	print_title(t_game *game)
 	i = 0;
 	while (i < 5)
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->pr_moves[i], x_start + (i * TILE_SIZE), y_pos);
+		mlx_put_image_to_window(game->mlx,
+			game->win,
+			game->pr_moves[i],
+			x_start + (i * TILE_SIZE),
+			y_pos);
 		i++;
 	}
 }
 
 void	print_col_title(t_game *game)
 {
-	int x_start;
-	int y_pos;
+	int	x_start;
+	int	y_pos;
 	int	i;
 
 	x_start = (game->m_width + 1) * TILE_SIZE;
@@ -71,7 +76,11 @@ void	print_col_title(t_game *game)
 	{
 		if (i == 2)
 			x_start += TILE_SIZE;
-		mlx_put_image_to_window(game->mlx, game->win, game->pr_cols[i], x_start + (i * TILE_SIZE), y_pos);
+		mlx_put_image_to_window(game->mlx,
+			game->win,
+			game->pr_cols[i],
+			x_start + (i * TILE_SIZE),
+			y_pos);
 		i++;
 	}
 }

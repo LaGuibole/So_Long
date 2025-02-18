@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:45:05 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 17:04:38 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:19:53 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,18 @@ void	draw_enemies(t_game *game)
 	i = 0;
 	while (i < game->enemy_count)
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->img_enemy, game->enemies[i].x * TILE_SIZE, game->enemies[i].y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx,
+			game->win,
+			game->img_enemy,
+			game->enemies[i].x * TILE_SIZE,
+			game->enemies[i].y * TILE_SIZE);
 		i++;
 	}
+}
+
+int	choose_enemy_direction(void)
+{
+	return (rand() % 4);
 }
 
 void	refresh_enemies(t_game *game)
@@ -55,9 +64,14 @@ void	refresh_enemies(t_game *game)
 	i = 0;
 	while (i < game->enemy_count)
 	{
-		if (game->enemies[i].old_x != game->enemies[i].x || game->enemies[i].old_y != game->enemies[i].y)
+		if (game->enemies[i].old_x != game->enemies[i].x
+			|| game->enemies[i].old_y != game->enemies[i].y)
 			draw_tile(game, game->enemies[i].old_y, game->enemies[i].old_x);
-		mlx_put_image_to_window(game->mlx, game->win, game->img_enemy, game->enemies[i].x * TILE_SIZE, game->enemies[i].y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx,
+			game->win,
+			game->img_enemy,
+			game->enemies[i].x * TILE_SIZE,
+			game->enemies[i].y * TILE_SIZE);
 		game->enemies[i].old_x = game->enemies[i].x;
 		game->enemies[i].old_y = game->enemies[i].y;
 		i++;
@@ -67,14 +81,13 @@ void	refresh_enemies(t_game *game)
 int	animate_ghosts(t_game *game)
 {
 	static unsigned long	last_ghost_time;
-	unsigned long		current_time;
-	unsigned long		elapsed_time;
+	unsigned long			current_time;
+	unsigned long			elapsed_time;
 
 	if (last_ghost_time == 0)
 		last_ghost_time = get_time_ms();
 	current_time = get_time_ms();
 	elapsed_time = current_time - last_ghost_time;
-
 	if (elapsed_time > 500)
 	{
 		move_enemies(game, 0);
@@ -83,4 +96,3 @@ int	animate_ghosts(t_game *game)
 	}
 	return (0);
 }
-

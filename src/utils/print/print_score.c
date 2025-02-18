@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:30:03 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/13 14:05:25 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:35:49 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	load_score(t_game *game)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
 	game->score[0] = mlx_xpm_file_to_image(game->mlx, P_0, &w, &h);
 	game->score[1] = mlx_xpm_file_to_image(game->mlx, P_1, &w, &h);
@@ -30,17 +30,17 @@ void	load_score(t_game *game)
 	game->score[9] = mlx_xpm_file_to_image(game->mlx, P_9, &w, &h);
 }
 
-int    _score_len(int score)
+int	_score_len(int score)
 {
-    int        len;
+	int	len;
 
-    len = 0;
-    while (score)
-    {
-        score /= 10;
-        len++;
-    }
-    return (len);
+	len = 0;
+	while (score)
+	{
+		score /= 10;
+		len++;
+	}
+	return (len);
 }
 
 void	draw_score(t_game *game, int number, int len)
@@ -49,16 +49,18 @@ void	draw_score(t_game *game, int number, int len)
 
 	img = NULL;
 	img = game->score[number];
-	mlx_put_image_to_window(game->mlx, game->win, img, (TILE_SIZE + 6) * (game->m_width + len), TILE_SIZE * 3 - (TILE_SIZE / 2));
+	mlx_put_image_to_window(game->mlx, game->win,
+		img, (TILE_SIZE + 6) * (game->m_width + len),
+		TILE_SIZE * 3 - (TILE_SIZE / 2));
 }
 
-void    put_score(t_game *game)
+void	put_score(t_game *game)
 {
-    int	len;
+	int	len;
 	int	i;
 	int	number;
 
-    len = _score_len(game->moves);
+	len = _score_len(game->moves);
 	i = 0;
 	number = game->moves;
 	while (number != 0)
@@ -68,4 +70,3 @@ void    put_score(t_game *game)
 		++i;
 	}
 }
-

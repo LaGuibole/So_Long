@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 17:13:44 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:20:08 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int		close_win(t_game *game);
 void 	draw_map(t_game *game);
 void	init_graphics(t_game *game);
 
+
 void	move_player(t_game *game, int gx, int gy);
 
 int		animate_pacman(t_game *game);
@@ -225,6 +226,7 @@ void	draw_enemies(t_game *game);
 void	spawn_enemies(t_game *game);
 void	check_player_death(t_game *game);
 void	move_enemies(t_game *game, int index);
+int	choose_enemy_direction(void);
 int		animate_enemies(t_game *game);
 void	refresh_enemies(t_game *game);
 int		animate_ghosts(t_game *game);

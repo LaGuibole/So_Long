@@ -6,26 +6,24 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 17:14:03 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/18 13:54:26 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
-void	draw_tile(t_game *game, int i, int j)
+void	*get_tile_image(t_game *game, int i, int j)
 {
-	void	*img;
 	int		compare;
+	void	*img;
 
 	compare = 0;
 	img = NULL;
 	while (compare < game->enemy_count)
 	{
 		if (game->enemies[compare].x == j && game->enemies[compare].y == i)
-		{
-			img = game->img_enemy;
-		}
+			return (game->img_enemy);
 		compare++;
 	}
 	if (game->grid[i][j] == FREESPACE)
@@ -40,8 +38,17 @@ void	draw_tile(t_game *game, int i, int j)
 		img = game->p_sprites[game->current_frame];
 	if (game->grid[i][j] == PLAYER_ON_EXIT)
 		img = game->sprites[game->current_dir][game->current_frame];
+	return (img);
+}
+
+void	draw_tile(t_game *game, int i, int j)
+{
+	void	*img;
+
+	img = get_tile_image(game, i, j);
 	if (img)
-		mlx_put_image_to_window(game->mlx, game->win, img, j * TILE_SIZE, i * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx, game->win, img,
+			j * TILE_SIZE, i * TILE_SIZE);
 }
 
 void	draw_map(t_game *game)
