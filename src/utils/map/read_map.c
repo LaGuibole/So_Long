@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 12:56:24 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:19:02 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,19 @@ int	read_map(t_game *map)
 		return (ft_putendl_fd(MSG_ERROR_EXTENSION, 2), RET_ERR);
 	fd = open(map->map_file, O_RDONLY);
 	if (fd == -1)
-		return (perror("Error opening file\n"), -1);
+		return (ft_putstr_fd(MSG_OPEN_ERROR, STDERR_FILENO), -1);
 	line_count = get_map_dimensions(fd, &map->m_width);
 	map->grid = malloc(sizeof(char *) * (line_count + 1));
 	if (!map->grid)
 	{
 		close(fd);
-		perror("Memory allocation error\n");
+		ft_putstr_fd(MSG_ERROR_MEM_ALLOC, STDERR_FILENO);
 		return (RET_NEG_ERR);
 	}
 	close(fd);
 	fd = open(map->map_file, O_RDONLY);
 	if (fd == -1)
-		return (ft_printf("Error reopening file\n"), -1);
+		return (ft_putstr_fd(MSG_ERROR_REOPEN, STDERR_FILENO), -1);
 	populate_map_grid(fd, map);
 	map->grid[line_count] = NULL;
 	close(fd);
@@ -95,21 +95,24 @@ int	map_check(t_game *map)
 	copy = (t_game){};
 	copy_map(map, &copy);
 	if (!copy.grid)
-		return (ft_putendl_fd(MSG_ERROR_COPY, STDERR_FILENO), RET_ERR);
+		return (ft_putstr_fd(MSG_ERROR_COPY, STDERR_FILENO), RET_ERR);
 	if (is_rectangular(map) == RET_ERR)
 		return (free_map(&copy),
-			ft_putendl_fd(MSG_ERROR_RECTANGLE, STDERR_FILENO),
+			ft_putstr_fd(MSG_ERROR_RECTANGLE, STDERR_FILENO),
 			RET_ERR);
 	if (is_bordered_with_walls(map) == RET_ERR)
-		return (free_map(&copy), ft_putendl_fd(MSG_ERROR_WALLS, STDERR_FILENO), RET_ERR);
+		return (free_map(&copy), ft_putstr_fd(MSG_ERROR_WALLS, STDERR_FILENO),
+			RET_ERR);
 	if (has_valid_elements(map) == RET_ERR)
-		return (free_map(&copy), ft_putendl_fd(MSG_ERROR_INVALID, STDERR_FILENO), RET_ERR);
+		return (free_map(&copy), ft_putstr_fd(MSG_ERROR_INVALID, STDERR_FILENO),
+			RET_ERR);
 	if (has_required_elements(map) == RET_ERR)
-		return (free_map(&copy), ft_putendl_fd(MSG_ERROR_MISSING, STDERR_FILENO), RET_ERR);
+		return (free_map(&copy), ft_putstr_fd(MSG_ERROR_MISSING, STDERR_FILENO),
+			RET_ERR);
 	if (is_path_valid(map) == RET_ERR)
 		return (free_map(&copy),
-			ft_putendl_fd(MSG_ERROR_UNSOLVABLE, STDERR_FILENO),
+			ft_putstr_fd(MSG_ERROR_UNSOLVABLE, STDERR_FILENO),
 			RET_ERR);
 	free_map(&copy);
-	return (ft_putendl_fd(MSG_MAP_SUCCESS, 1), RET_OK);
+	return (ft_putstr_fd(MSG_MAP_SUCCESS, 1), RET_OK);
 }

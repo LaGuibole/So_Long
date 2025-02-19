@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:00:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 11:39:10 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:03:20 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	check_pacman_texture_paths(t_game *game)
 {
 	char	*textures[13];
-	int	i;
+	int		i;
 
 	textures[0] = P_L_C;
 	textures[1] = P_L_S;
@@ -36,7 +36,7 @@ void	check_pacman_texture_paths(t_game *game)
 	{
 		if (access(textures[i++], F_OK) != 0)
 		{
-			clean_and_exit(game, "Error :\nA pacman texture is missing\n");
+			clean_and_exit(game, MSG_PAC_TEXTURE_ERR);
 		}
 	}
 }
@@ -44,7 +44,7 @@ void	check_pacman_texture_paths(t_game *game)
 void	check_map_texture_paths(t_game *game)
 {
 	char	*textures[8];
-	int	i;
+	int		i;
 
 	textures[0] = WALL_IMG;
 	textures[1] = GROUND;
@@ -59,15 +59,17 @@ void	check_map_texture_paths(t_game *game)
 	{
 		if (access(textures[i++], F_OK) != 0)
 		{
-			clean_and_exit(game, "Error :\n A map texture is missing");
+			clean_and_exit(game, MSG_MAP_TEXTURE_ERR);
 		}
 	}
 }
 
+/// @brief toto tata
+/// @param game toto titi
 void	check_prints_score_texture_path(t_game *game)
 {
 	char	*textures[11];
-	int	i;
+	int		i;
 
 	textures[0] = P_0;
 	textures[1] = P_1;
@@ -85,7 +87,7 @@ void	check_prints_score_texture_path(t_game *game)
 	{
 		if (access(textures[i++], F_OK) != 0)
 		{
-			clean_and_exit(game, "Error :\nA score texture is missing");
+			clean_and_exit(game, MSG_SCORE_TEXTURE_ERR);
 		}
 	}
 }
@@ -93,7 +95,7 @@ void	check_prints_score_texture_path(t_game *game)
 void	check_move_title_texture_path(t_game *game)
 {
 	char	*textures[6];
-	int	i;
+	int		i;
 
 	textures[0] = _M;
 	textures[1] = _O;
@@ -106,7 +108,7 @@ void	check_move_title_texture_path(t_game *game)
 	{
 		if (access(textures[i++], F_OK) != 0)
 		{
-			clean_and_exit(game, "Error :\nA move title texture is missing");
+			clean_and_exit(game, MSG_MOVE_TEXTURE_ERR);
 		}
 	}
 }
@@ -114,7 +116,7 @@ void	check_move_title_texture_path(t_game *game)
 void	check_tocollect_texture_path(t_game *game)
 {
 	char	*textures[9];
-	int	i;
+	int		i;
 
 	textures[0] = _A;
 	textures[1] = _B;
@@ -130,7 +132,7 @@ void	check_tocollect_texture_path(t_game *game)
 	{
 		if (access(textures[i++], F_OK) != 0)
 		{
-			clean_and_exit(game, "Error :\nA To Collect texture is missing");
+			clean_and_exit(game, MSG_TO_COLL_TEXTURE_ERR);
 		}
 	}
 }

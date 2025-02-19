@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:45:05 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 12:44:57 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:00:26 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	spawn_enemies(t_game *game)
 	int	y;
 	int	i;
 
-	game->enemy_count = MAX_ENEMIES;
+	if (game->m_height > 3 && game->spawn_space > 5)
+		game->enemy_count = MAX_ENEMIES;
 	i = 0;
 	while (i < game->enemy_count && game->spawn_space > 5 && game->m_height > 3)
 	{
@@ -83,6 +84,9 @@ void	refresh_enemies(t_game *game)
 	}
 }
 
+/// @brief
+/// @param game
+/// @return
 int	animate_ghosts(t_game *game)
 {
 	static unsigned long	last_ghost_time;
@@ -99,5 +103,5 @@ int	animate_ghosts(t_game *game)
 		refresh_enemies(game);
 		last_ghost_time = current_time;
 	}
-	return (0);
+	return (RET_OK);
 }

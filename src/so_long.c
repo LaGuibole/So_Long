@@ -6,22 +6,19 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:56:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 12:52:23 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:58:38 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/so_long.h"
-# include "../includes/messages.h"
+#include "../includes/so_long.h"
+#include "../includes/messages.h"
 
 int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
-	{
-		usage();
-		return (1);
-	}
+		return (usage(), 1);
 	init_null(&game);
 	game.map_file = argv[1];
 	if (init_map_rules(&game, argv[1]) == RET_ERR)
@@ -35,6 +32,5 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, 17, 0, close_win, &game);
 	mlx_loop(game.mlx);
 	free_map(&game);
-	return (0);
+	return (RET_OK);
 }
-

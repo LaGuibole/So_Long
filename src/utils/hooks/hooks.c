@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:15:43 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/17 17:17:12 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:53:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	close_win(t_game *game)
 {
 	cleanup(game);
 	exit(EXIT_SUCCESS);
-	return (0);
+	return (RET_OK);
 }
 
 int	key_hooks(int keycode, t_game *game)
@@ -35,7 +35,7 @@ int	key_hooks(int keycode, t_game *game)
 	draw_map(game);
 	put_score(game);
 	put_cols(game);
-	return (0);
+	return (RET_OK);
 }
 
 int	game_loop(void	*param)
@@ -44,7 +44,10 @@ int	game_loop(void	*param)
 
 	game = (t_game *)param;
 	animate_pacman(game);
-	animate_ghosts(game);
-	refresh_enemies(game);
-	return (0);
+	if (game->enemy_count != 0)
+	{
+		animate_ghosts(game);
+		refresh_enemies(game);
+	}
+	return (RET_OK);
 }

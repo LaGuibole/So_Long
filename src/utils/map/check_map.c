@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:15:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 11:20:39 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:25:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	is_bordered_with_walls(t_game *map)
 	i = 0;
 	while (i < map->m_width)
 	{
-		if (map->grid[0][i] != '1' || map->grid[map->m_height - 1][i] != '1')
+		if (map->grid[0][i] != WALL || map->grid[map->m_height - 1][i] != WALL)
 			return (RET_ERR);
 		i++;
 	}
 	i = 0;
 	while (i < map->m_height)
 	{
-		if (map->grid[i][0] != '1' || map->grid[i][map->m_width - 1] != '1')
+		if (map->grid[i][0] != WALL || map->grid[i][map->m_width - 1] != WALL)
 			return (RET_ERR);
 		i++;
 	}
@@ -87,11 +87,11 @@ int	has_valid_elements(t_game *map)
 		j = -1;
 		while (++j < map->m_width)
 		{
-			if (map->grid[i][j] != '1' && map->grid[i][j] != '0' &&
-				map->grid[i][j] != 'E' && map->grid[i][j] != 'C' &&
-				map->grid[i][j] != 'P')
+			if (map->grid[i][j] != WALL && map->grid[i][j] != FREESPACE &&
+				map->grid[i][j] != EXIT && map->grid[i][j] != COLLECTIBLE &&
+				map->grid[i][j] != PLAYER)
 				return (RET_ERR);
-			else if (map->grid[i][j] == '0')
+			else if (map->grid[i][j] == FREESPACE)
 				map->spawn_space++;
 		}
 	}
@@ -117,11 +117,11 @@ int	has_required_elements(t_game *map)
 		j = -1;
 		while (++j < map->m_width)
 		{
-			if (map->grid[i][j] == 'P')
+			if (map->grid[i][j] == PLAYER)
 				map->player_count++;
-			else if (map->grid[i][j] == 'C')
+			else if (map->grid[i][j] == COLLECTIBLE)
 				map->col_count++;
-			else if (map->grid[i][j] == 'E')
+			else if (map->grid[i][j] == EXIT)
 				map->exit_count++;
 		}
 	}

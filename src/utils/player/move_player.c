@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:05:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 13:57:06 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:45:04 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	end_game(t_game *game)
 	{
 		if (game->col_count == 0)
 		{
-			ft_printf("You won with %d moves\n", game->moves);
+			ft_printf(MSG_GAME_WIN, game->moves);
 			close_win(game);
 			exit(EXIT_SUCCESS);
 		}
@@ -46,7 +46,7 @@ static void	end_game(t_game *game)
 		if (game->new_x == game->enemies[i].x
 			&& game->new_y == game->enemies[i].y)
 		{
-			ft_printf("Game Over, Pac-Man got caught!\n");
+			ft_printf(MSG_GAME_OVER);
 			close_win(game);
 		}
 		i++;
@@ -108,5 +108,5 @@ int	animate_pacman(t_game *game)
 		draw_tile(game, game->player_y, game->player_x);
 		draw_tile(game, game->exit_y, game->exit_x);
 	}
-	return (0);
+	return (RET_OK);
 }

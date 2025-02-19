@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:56:09 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 12:32:16 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:02:53 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_null_enemy(t_enemy *data)
 	data->x = 0;
 	data->y = 0;
 }
+
 void	init_null(t_game *data)
 {
 	data->mlx = NULL;
@@ -34,6 +35,9 @@ void	init_null(t_game *data)
 	data->current_frame = 0;
 	data->moving = 1;
 	data->spawn_space = 0;
+	data->w_height = 0;
+	data->w_width = 0;
+	data->enemy_count = 0;
 	init_null_enemy(data->enemies);
 }
 
@@ -42,7 +46,7 @@ int	init_map_rules(t_game *game, char *map_file)
 	game->map_file = map_file;
 	if (read_map(game) == RET_ERR)
 	{
-		ft_putstr_fd(RED MAP_UNREADABLE RESET, STDERR_FILENO);
+		ft_putstr_fd(RED MSG_MAP_UNREADABLE RESET, STDERR_FILENO);
 		return (RET_ERR);
 	}
 	if (map_check(game) == RET_ERR)
@@ -56,15 +60,21 @@ int	init_map_rules(t_game *game, char *map_file)
 int	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
+	game->w_height = game->m_height * TILE_SIZE + (TILE_SIZE * 10);
+	game->w_width = game->m_width * TILE_SIZE + (TILE_SIZE * 12);
 	if (!game->mlx)
+		return (clean_lines(game->grid, game->m_height), EXIT_FAILURE);
+	if (game->m_height < 10)
 	{
-		clean_lines(game->grid, game->m_height);
-		return (EXIT_FAILURE);
+		game->win = mlx_new_window(game->mlx, game->w_width, game->w_height,
+				"PacMan So_Long");
 	}
-	game->win = mlx_new_window(game->mlx,
-		game->m_width * TILE_SIZE + (TILE_SIZE * 12),
-		game->m_height * TILE_SIZE,
-		"PacMan So_Long");
+	else
+	{
+		game->win = mlx_new_window(game->mlx,
+				game->m_width * TILE_SIZE + (TILE_SIZE * 12),
+				game->m_height * TILE_SIZE, "PacMan So_Long");
+	}
 	if (!game->win)
 	{
 		mlx_destroy_display(game->mlx);

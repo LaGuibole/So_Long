@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:40:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/12 16:47:59 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:22:11 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void	flood_fill(t_game *map, int x, int y)
 {
 	if (y < 0 || y >= map->m_height || x < 0 || x >= map->m_width)
 		return ;
-	if (map->grid[y][x] == '1' || map->grid[y][x] == 'V')
+	if (map->grid[y][x] == WALL || map->grid[y][x] == FLOOD_VALID)
 		return ;
-	if (map->grid[y][x] == 'E' || map->grid[y][x] == 'C')
-		map->grid[y][x] = 'V';
-	map->grid[y][x] = 'V';
+	if (map->grid[y][x] == EXIT || map->grid[y][x] == COLLECTIBLE)
+		map->grid[y][x] = FLOOD_VALID;
+	map->grid[y][x] = FLOOD_VALID;
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x, y + 1);
@@ -67,7 +67,7 @@ static int	is_map_solvable(t_game *map)
 		j = 0;
 		while (j < map->m_width)
 		{
-			if (map->grid[i][j] == 'C' || map->grid[i][j] == 'E')
+			if (map->grid[i][j] == COLLECTIBLE || map->grid[i][j] == EXIT)
 				return (RET_ERR);
 			j++;
 		}

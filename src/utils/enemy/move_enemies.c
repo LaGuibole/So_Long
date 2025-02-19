@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:27 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 14:19:43 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:45:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	is_enemy_at_position(t_enemy *enemy, int count, int x, int y)
 	while (i < count)
 	{
 		if (enemy[i].x == x && enemy[i].y == y)
-			return (1);
+			return (RET_ERR);
 		i++;
 	}
-	return (0);
+	return (RET_OK);
 }
 
 int	is_valid_position(t_game *game, t_enemy *enemy)
@@ -46,29 +46,29 @@ int	is_valid_position(t_game *game, t_enemy *enemy)
 	if (game->grid == NULL || enemy->new_y < 0 || enemy->new_y >= game->m_height
 		|| enemy->new_x < 0 || enemy->new_x >= game->m_width)
 	{
-		return (0);
+		return (RET_OK);
 	}
 	if (game->grid[enemy->new_y][enemy->new_x] == WALL
 		|| game->grid[enemy->new_y][enemy->new_x] == EXIT)
 	{
-		return (0);
+		return (RET_OK);
 	}
 	if (is_enemy_at_position(game->enemies,
 			game->enemy_count, enemy->new_x, enemy->new_y))
 	{
-		return (0);
+		return (RET_OK);
 	}
-	return (1);
+	return (RET_ERR);
 }
 
 int	attempt_move_enemy(t_game *game, t_enemy *enemy, int attempt_count)
 {
 	if (attempt_count > 10)
-		return (0);
+		return (RET_OK);
 	enemy->direction = choose_enemy_direction();
 	calculate_new_position(enemy);
 	if (is_valid_position(game, enemy))
-		return (1);
+		return (RET_ERR);
 	return (attempt_move_enemy(game, enemy, attempt_count + 1));
 }
 
@@ -87,7 +87,7 @@ void	move_enemies(t_game *game, int index)
 		enemy->y = enemy->new_y;
 		if (enemy->x == game->player_x && enemy->y == game->player_y)
 		{
-			ft_printf("Game Over, Pac-Man got caught!\n");
+			ft_putstr_fd(MSG_GAME_OVER, STDOUT_FILENO);
 			close_win(game);
 			exit(EXIT_SUCCESS);
 		}
