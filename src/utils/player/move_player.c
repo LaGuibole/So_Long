@@ -6,13 +6,17 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:05:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 14:45:04 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:50:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Manage player behavior
+/// @param game A pointer to the game struct
+/// @param new_x new x axis position
+/// @param new_y new y axis position
 static void	player(t_game *game, int new_x, int new_y)
 {
 	if (game->grid[game->player_y][game->player_x] == PLAYER_ON_EXIT)
@@ -27,6 +31,8 @@ static void	player(t_game *game, int new_x, int new_y)
 	game->player_x = new_x;
 }
 
+/// @brief Manage end game events
+/// @param game A pointer to the game struct
 static void	end_game(t_game *game)
 {
 	int	i;
@@ -53,6 +59,10 @@ static void	end_game(t_game *game)
 	}
 }
 
+/// @brief Manage player movement
+/// @param game A pointer to the game struct
+/// @param gx Player position on x axis
+/// @param gy Player position on y axis
 void	move_player(t_game *game, int gx, int gy)
 {
 	game->new_x = game->player_x + gx;

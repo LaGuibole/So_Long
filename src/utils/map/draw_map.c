@@ -6,13 +6,18 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 16:00:15 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:12:48 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Appply xpm file on the so called variable
+/// @param game A pointer to game structure
+/// @param i y axis
+/// @param j x axis
+/// @return
 void	*get_tile_image(t_game *game, int i, int j)
 {
 	int		compare;
@@ -42,6 +47,10 @@ void	*get_tile_image(t_game *game, int i, int j)
 	return (img);
 }
 
+/// @brief Draw xpm for each tile
+/// @param game A pointer to the game struct
+/// @param i y axis
+/// @param j x axis
 void	draw_tile(t_game *game, int i, int j)
 {
 	void	*img;
@@ -52,6 +61,8 @@ void	draw_tile(t_game *game, int i, int j)
 			j * TILE_SIZE, i * TILE_SIZE);
 }
 
+/// @brief Main function to draw the map
+/// @param game A pointer to the game struct
 void	draw_map(t_game *game)
 {
 	int	i;
@@ -73,6 +84,8 @@ void	draw_map(t_game *game)
 	print_name(game);
 }
 
+/// @brief Load all game images
+/// @param game A pointer to game stuct
 void	load_images(t_game *game)
 {
 	game->img_wall = mlx_xpm_file_to_image(game->mlx, WALL_IMG,

@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:30:03 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 11:35:49 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:54:19 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Load digits (0 - 9)
+/// @param game A pointer to the game struct
 void	load_score(t_game *game)
 {
 	int	w;
@@ -30,6 +32,9 @@ void	load_score(t_game *game)
 	game->score[9] = mlx_xpm_file_to_image(game->mlx, P_9, &w, &h);
 }
 
+/// @brief Calculate moves count digit len
+/// @param score game->moves_count
+/// @return
 int	_score_len(int score)
 {
 	int	len;
@@ -43,6 +48,10 @@ int	_score_len(int score)
 	return (len);
 }
 
+/// @brief Print score on screen
+/// @param game A pointer to game struct
+/// @param number game->moves_count
+/// @param len Digits len
 void	draw_score(t_game *game, int number, int len)
 {
 	void	*img;
@@ -54,6 +63,8 @@ void	draw_score(t_game *game, int number, int len)
 		TILE_SIZE * 3 - (TILE_SIZE / 2));
 }
 
+/// @brief Print score on screen dynamically
+/// @param game A pointer to the game struct
 void	put_score(t_game *game)
 {
 	int	len;

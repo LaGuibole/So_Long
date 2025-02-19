@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:54:20 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 11:39:29 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:55:35 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Load 'MOVES' textures
+/// @param game A pointer to the game structure
 void	load_titles(t_game *game)
 {
 	int	w;
@@ -25,8 +27,8 @@ void	load_titles(t_game *game)
 	game->pr_moves[4] = mlx_xpm_file_to_image(game->mlx, _S, &w, &h);
 }
 
-/// @brief
-/// @param game
+/// @brief Load 'To Collect' textures
+/// @param game A pointer to the game struct
 void	load_to_collect(t_game *game)
 {
 	int	w;
@@ -43,6 +45,8 @@ void	load_to_collect(t_game *game)
 	game->pr_cols[8] = mlx_xpm_file_to_image(game->mlx, _T, &w, &h);
 }
 
+/// @brief Print 'MOVES' title on screen
+/// @param game A pointer to the game struct
 void	print_title(t_game *game)
 {
 	int	x_start;
@@ -63,6 +67,8 @@ void	print_title(t_game *game)
 	}
 }
 
+/// @brief Print 'To Collect' title on screen
+/// @param game A pointer to the game structure
 void	print_col_title(t_game *game)
 {
 	int	x_start;

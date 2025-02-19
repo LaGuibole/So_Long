@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:27 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 15:45:59 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:02:44 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Calculate enemy's position before moving
+/// @param enemy A pointer to enemy struct
 void	calculate_new_position(t_enemy *enemy)
 {
 	enemy->new_x = enemy->x;
@@ -27,6 +29,12 @@ void	calculate_new_position(t_enemy *enemy)
 		enemy->new_x += 1;
 }
 
+/// @brief Check if an enemy is already on the calculated tile
+/// @param enemy A pointer to enemy struct
+/// @param count Enemy count
+/// @param x x axis on map
+/// @param y y axis on map
+/// @return 0 if no enemy was found 1 otherwise
 int	is_enemy_at_position(t_enemy *enemy, int count, int x, int y)
 {
 	int	i;
@@ -41,6 +49,10 @@ int	is_enemy_at_position(t_enemy *enemy, int count, int x, int y)
 	return (RET_OK);
 }
 
+/// @brief Check if the enemy position is valid on the map
+/// @param game A pointer to game structure
+/// @param enemy A pointer to enemy structure
+/// @return
 int	is_valid_position(t_game *game, t_enemy *enemy)
 {
 	if (game->grid == NULL || enemy->new_y < 0 || enemy->new_y >= game->m_height
@@ -61,6 +73,11 @@ int	is_valid_position(t_game *game, t_enemy *enemy)
 	return (RET_ERR);
 }
 
+/// @brief A function to attempt an enemy move
+/// @param game A pointer to game struct
+/// @param enemy A pointer to enemy struct
+/// @param attempt_count An attempt count to avoid overflows
+/// @return
 int	attempt_move_enemy(t_game *game, t_enemy *enemy, int attempt_count)
 {
 	if (attempt_count > 10)
@@ -72,6 +89,9 @@ int	attempt_move_enemy(t_game *game, t_enemy *enemy, int attempt_count)
 	return (attempt_move_enemy(game, enemy, attempt_count + 1));
 }
 
+/// @brief A function that moves the enemy
+/// @param game A pointer to game struct
+/// @param index An iterator to apply moves to all enemies
 void	move_enemies(t_game *game, int index)
 {
 	t_enemy	*enemy;

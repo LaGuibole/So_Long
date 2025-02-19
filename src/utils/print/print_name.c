@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:46:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 11:52:17 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:52:42 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Load xpm for DevName
+/// @param game A pointer to the game struct
 void	load_name(t_game *game)
 {
 	int	w;
@@ -29,6 +31,8 @@ void	load_name(t_game *game)
 	game->pr_name[8] = mlx_xpm_file_to_image(game->mlx, _E, &w, &h);
 }
 
+/// @brief Print the DevName on screen
+/// @param game A pointer to the game struct
 void	print_name(t_game *game)
 {
 	int	x_start;

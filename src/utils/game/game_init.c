@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:56:09 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 16:02:53 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:56:06 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Init enemy struct to NULL or 0 before using variables
+/// @param data a pointer to Enemy struct
 void	init_null_enemy(t_enemy *data)
 {
 	data->new_x = 0;
@@ -21,6 +23,8 @@ void	init_null_enemy(t_enemy *data)
 	data->y = 0;
 }
 
+/// @brief Init game struct variables to NULL or 0
+/// @param data A pointer to Game struct
 void	init_null(t_game *data)
 {
 	data->mlx = NULL;
@@ -41,6 +45,10 @@ void	init_null(t_game *data)
 	init_null_enemy(data->enemies);
 }
 
+/// @brief Calls read_map() and check_map() to insure all is ok
+/// @param game A pointer to game struct
+/// @param map_file A pointer to argv[1]
+/// @return
 int	init_map_rules(t_game *game, char *map_file)
 {
 	game->map_file = map_file;
@@ -57,6 +65,9 @@ int	init_map_rules(t_game *game, char *map_file)
 	return (RET_OK);
 }
 
+/// @brief Init game window, managing different map sizes
+/// @param game A pointer to game struct
+/// @return
 int	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -85,6 +96,8 @@ int	init_window(t_game *game)
 	return (EXIT_SUCCESS);
 }
 
+/// @brief Global graphic init method
+/// @param game A pointer to Game struct
 void	init_graphics(t_game *game)
 {
 	load_images(game);

@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:45:05 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 16:00:26 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:05:04 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief A function that ensure enemy spawn
+/// @param game A pointer to game struct
 void	spawn_enemies(t_game *game)
 {
 	int	x;
@@ -42,6 +44,8 @@ void	spawn_enemies(t_game *game)
 	}
 }
 
+/// @brief A function to draw enemies after they spawn
+/// @param game A pointer to game struct
 void	draw_enemies(t_game *game)
 {
 	int	i;
@@ -58,11 +62,16 @@ void	draw_enemies(t_game *game)
 	}
 }
 
+/// @brief Choose enemy direction thks to rand function
+/// @param
+/// @return 0, 1, 2, 3 depending on rand() result
 int	choose_enemy_direction(void)
 {
 	return (rand() % 4);
 }
 
+/// @brief Refresh enemy position after a move
+/// @param game A pointer to game struct
 void	refresh_enemies(t_game *game)
 {
 	int	i;
@@ -84,8 +93,8 @@ void	refresh_enemies(t_game *game)
 	}
 }
 
-/// @brief
-/// @param game
+/// @brief Animate ghosts moves apart from pacman to adapt enemy speed
+/// @param game A pointer to game struct
 /// @return
 int	animate_ghosts(t_game *game)
 {

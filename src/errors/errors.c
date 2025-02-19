@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:00:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 16:03:20 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:57:58 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 #include "../../includes/messages.h"
 
+/// @brief Verify that pacman textures exists
+/// @param game Structure containing game info
 void	check_pacman_texture_paths(t_game *game)
 {
 	char	*textures[13];
@@ -41,6 +43,8 @@ void	check_pacman_texture_paths(t_game *game)
 	}
 }
 
+/// @brief Verify that map textures exists
+/// @param game Structure containing game info
 void	check_map_texture_paths(t_game *game)
 {
 	char	*textures[8];
@@ -64,8 +68,8 @@ void	check_map_texture_paths(t_game *game)
 	}
 }
 
-/// @brief toto tata
-/// @param game toto titi
+/// @brief Verify that score textures exists
+/// @param game Structure that contain game info
 void	check_prints_score_texture_path(t_game *game)
 {
 	char	*textures[11];
@@ -92,6 +96,8 @@ void	check_prints_score_texture_path(t_game *game)
 	}
 }
 
+/// @brief Verify that 'MOVES' textures exists
+/// @param game Structure containing game info
 void	check_move_title_texture_path(t_game *game)
 {
 	char	*textures[6];
@@ -113,6 +119,8 @@ void	check_move_title_texture_path(t_game *game)
 	}
 }
 
+/// @brief A 'To Collect' texture check
+/// @param game Structure containing all game infos
 void	check_tocollect_texture_path(t_game *game)
 {
 	char	*textures[9];

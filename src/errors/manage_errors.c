@@ -6,21 +6,23 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:38:04 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 12:57:18 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:58:14 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 #include "../../includes/messages.h"
 
+/// @brief A function to explain program usage
+/// @param
 void	usage(void)
 {
 	ft_putendl_fd(MSG_USAGE, STDERR_FILENO);
 }
 
-/// @brief
-/// @param game
-/// @param error_msg
+/// @brief A function that clean all game assets and exit window
+/// @param game Structure containing game infos
+/// @param error_msg An error message to display
 void	clean_and_exit(t_game *game, char *error_msg)
 {
 	if (!error_msg)
@@ -34,8 +36,8 @@ void	clean_and_exit(t_game *game, char *error_msg)
 	exit(EXIT_FAILURE);
 }
 
-/// @brief
-/// @param game
+/// @brief A global textures check
+/// @param game Structure containing game infos
 void	global_texture_check(t_game *game)
 {
 	check_pacman_texture_paths(game);

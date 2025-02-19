@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:40:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 14:22:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:15:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Store x and y player position
+/// @param map A pointer to game struct
 void	find_player(t_game *map)
 {
 	int	x;
@@ -41,6 +43,10 @@ void	find_player(t_game *map)
 	}
 }
 
+/// @brief FloodFill Algorithm, replace chars with 'V'
+/// @param map A pointer to the game struct
+/// @param x y axis
+/// @param y x axis (unlogic i see it now T_T)
 static void	flood_fill(t_game *map, int x, int y)
 {
 	if (y < 0 || y >= map->m_height || x < 0 || x >= map->m_width)
@@ -56,6 +62,9 @@ static void	flood_fill(t_game *map, int x, int y)
 	flood_fill(map, x, y - 1);
 }
 
+/// @brief Method to check if the map could be finished or not
+/// @param map A pointer to game struct
+/// @return
 static int	is_map_solvable(t_game *map)
 {
 	int	i;
@@ -76,6 +85,9 @@ static int	is_map_solvable(t_game *map)
 	return (RET_OK);
 }
 
+/// @brief Could the player finish the game ?
+/// @param original A pointer to the original map
+/// @return
 int	is_path_valid(t_game *original)
 {
 	t_game	copy;

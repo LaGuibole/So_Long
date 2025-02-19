@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:55:14 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 12:05:24 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:49:07 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Load pacman animation sprites
+/// @param game A pointer to the game struct
 void	load_sprites(t_game *game)
 {
 	int	w;
@@ -35,6 +37,10 @@ void	load_sprites(t_game *game)
 	game->p_sprites[2] = mlx_xpm_file_to_image(game->mlx, P3, &w, &h);
 }
 
+/// @brief Prints pacman tiles
+/// @param game A pointer to the game struct
+/// @param x x axis
+/// @param y y axis
 void	draw_pacman(t_game *game, int x, int y)
 {
 	void	*sprite;

@@ -6,13 +6,17 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:48:44 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 16:19:02 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:48:14 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Get and store map dimensions
+/// @param fd Fd to read from
+/// @param width Len of the first line
+/// @return
 static int	get_map_dimensions(int fd, int *width)
 {
 	char	*line;
@@ -40,6 +44,10 @@ static int	get_map_dimensions(int fd, int *width)
 	return (line_count);
 }
 
+/// @brief Fill maps line
+/// @param fd Fd to read from
+/// @param map A pointer to the game struct
+/// @return
 static int	populate_map_grid(int fd, t_game *map)
 {
 	char	*line;
@@ -60,6 +68,9 @@ static int	populate_map_grid(int fd, t_game *map)
 	return (RET_OK);
 }
 
+/// @brief Read the map file and store content in struct
+/// @param map A pointer to the game struct
+/// @return
 int	read_map(t_game *map)
 {
 	int		fd;
@@ -88,6 +99,9 @@ int	read_map(t_game *map)
 	return (RET_OK);
 }
 
+/// @brief Verify if map is valid
+/// @param map A pointer to the game struct
+/// @return
 int	map_check(t_game *map)
 {
 	t_game	copy;

@@ -6,13 +6,17 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:15:29 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/14 17:38:02 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:10:24 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/so_long.h"
 #include "../../../includes/messages.h"
 
+/// @brief Copy the map grid in order to check it
+/// @param copy A pointer to the map copy
+/// @param original A pointer to the original file
+/// @return
 static int	copy_grid(t_game *copy, t_game *original)
 {
 	int	i;
@@ -40,6 +44,9 @@ static int	copy_grid(t_game *copy, t_game *original)
 	return (RET_OK);
 }
 
+/// @brief Copy the map and its content
+/// @param original A pointer to original file
+/// @param copy A pointer to the copy that has been created
 void	copy_map(t_game *original, t_game *copy)
 {
 	copy->map_file = original->map_file;
