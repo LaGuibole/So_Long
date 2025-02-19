@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:55:32 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 19:21:57 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:56:06 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,6 @@ void	load_images(t_game *game)
 			&game->img_width, &game->img_height);
 	game->img_ground = mlx_xpm_file_to_image(game->mlx, GROUND,
 			&game->img_width, &game->img_height);
-}
-
-void	init_graphics(t_game *game)
-{
-	load_images(game);
-	spawn_enemies(game);
-	draw_enemies(game);
-	load_score(game);
-	load_sprites(game);
-	load_titles(game);
-	load_to_collect(game);
-	load_name(game);
-	// global_texture_check(game);
-	draw_map(game);
 }
 
 

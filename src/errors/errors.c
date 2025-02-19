@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:00:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 19:16:35 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:39:10 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_pacman_texture_paths(t_game *game)
 	{
 		if (access(textures[i++], F_OK) != 0)
 		{
-			clean_and_exit(game, "Error :\nA pacman texture is missing");
+			clean_and_exit(game, "Error :\nA pacman texture is missing\n");
 		}
 	}
 }
@@ -80,6 +80,7 @@ void	check_prints_score_texture_path(t_game *game)
 	textures[8] = P_8;
 	textures[9] = P_9;
 	textures[10] = NULL;
+	i = 0;
 	while (textures[i] != NULL)
 	{
 		if (access(textures[i++], F_OK) != 0)
@@ -100,6 +101,7 @@ void	check_move_title_texture_path(t_game *game)
 	textures[3] = _E;
 	textures[4] = _S;
 	textures[5] = NULL;
+	i = 0;
 	while (textures[i] != NULL)
 	{
 		if (access(textures[i++], F_OK) != 0)
@@ -123,6 +125,7 @@ void	check_tocollect_texture_path(t_game *game)
 	textures[6] = _U;
 	textures[7] = _T;
 	textures[8] = NULL;
+	i = 0;
 	while (textures[i] != NULL)
 	{
 		if (access(textures[i++], F_OK) != 0)

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:45:05 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 15:53:03 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:44:57 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	spawn_enemies(t_game *game)
 		y = rand() % game->m_height;
 		if (game->grid[y][x] == FREESPACE)
 		{
+			if ((y > 0 && game->grid[y - 1][x] == WALL) &&
+				(y < game->m_height - 1 && game->grid[y + 1][x] == WALL) &&
+				(x > 0 && game->grid[y][x - 1] == WALL) &&
+				(x < game->m_width - 1 && game->grid[y][x + 1] == WALL))
+				continue ;
 			game->enemies[i].x = x;
 			game->enemies[i].y = y;
 			game->enemies[i].old_x = x;

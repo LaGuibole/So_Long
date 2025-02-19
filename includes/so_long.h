@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/18 19:21:04 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:33:42 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,4 +242,11 @@ void	check_tocollect_texture_path(t_game *game);
 
 void	clean_and_exit(t_game *game, char *error_msg);
 void	global_texture_check(t_game *game);
+
+void	init_null(t_game *data);
+void	init_null_enemy(t_enemy *data);
+void	load_images(t_game *game);
+
+int	init_map_rules(t_game *game, char *map_file);
+int	init_window(t_game *game);
 #endif
