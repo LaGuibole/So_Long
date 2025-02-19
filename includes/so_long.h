@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:47:08 by guphilip          #+#    #+#             */
-/*   Updated: 2025/02/19 16:11:15 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:52:25 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define PLAYER_ON_EXIT 'X'
 # define FREESPACE '0'
 # define FLOOD_VALID 'V'
-# define MAX_ENEMIES 1
+# define MAX_ENEMIES 4
 
 // IMG DEFINE
 

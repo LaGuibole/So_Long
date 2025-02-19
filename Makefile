@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/04 13:50:50 by guphilip          #+#    #+#              #
-#    Updated: 2025/02/19 15:17:39 by guphilip         ###   ########.fr        #
+#    Updated: 2025/02/19 16:42:17 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,25 @@ OBJ_DIR				= 		obj
 
 # SO_LONG
 
-SRC_FILES 			=		so_long utils/map/clean utils/map/read_map utils/map/copy_map utils/map/check_map utils/map/flood_fill utils/hooks/hooks utils/map/draw_map utils/player/move_player utils/print/print_score utils/print/print_titles utils/print/print_col utils/print/print_name utils/enemy/spawn_enemy utils/enemy/move_enemies utils/player/load_player_sprites errors/errors errors/manage_errors utils/game/game_init
+SRC_FILES 			=		so_long \
+							utils/map/clean \
+							utils/map/read_map \
+							utils/map/copy_map \
+							utils/map/check_map \
+							utils/map/flood_fill \
+							utils/hooks/hooks \
+							utils/map/draw_map \
+							utils/player/move_player \
+							utils/print/print_score \
+							utils/print/print_titles \
+							utils/print/print_col \
+							utils/print/print_name \
+							utils/enemy/spawn_enemy \
+							utils/enemy/move_enemies \
+							utils/player/load_player_sprites \
+							utils/game/game_init \
+							errors/errors \
+							errors/manage_errors 
 SRCS				=		$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJS				=		$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
